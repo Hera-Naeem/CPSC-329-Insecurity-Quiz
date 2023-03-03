@@ -13,30 +13,9 @@ public class MultipleChoiceQuestion extends Question {
         this.answer = answer;
         this.answerFollowup = answerFollowup;
     }
-
-    @Override
-    public QuestionTypes getQuestionType() {
-        return QuestionTypes.MultipleChoice;
-    }
-
-    @Override
-    public String getQuestion() {
-        return this.question;
-    }
-
     @Override
     public boolean validateAnswer(String answer) {
         return answer.equals(this.answer);
-    }
-
-    @Override
-    public String getQuestionHint() {
-        return this.questionHint;
-    }
-
-    @Override
-    public String getAnswerFollowup() {
-        return this.answerFollowup;
     }
 
     /*

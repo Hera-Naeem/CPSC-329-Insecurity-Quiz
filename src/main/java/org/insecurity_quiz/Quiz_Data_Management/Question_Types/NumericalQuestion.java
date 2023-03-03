@@ -13,30 +13,9 @@ public class NumericalQuestion extends Question {
         this.answerFollowup = answerFollowup;
     }
     @Override
-    public QuestionTypes getQuestionType() {
-        return QuestionTypes.Numerical;
-    }
-
-    @Override
-    public String getQuestion() {
-        return this.question;
-    }
-
-    @Override
     public boolean validateAnswer(String answer) {
-        return false;
+        return Double.parseDouble(answer) == Double.parseDouble(this.answer);
     }
-
-    @Override
-    public String getQuestionHint() {
-        return this.questionHint;
-    }
-
-    @Override
-    public String getAnswerFollowup() {
-        return this.answerFollowup;
-    }
-
     /*
     Internal methods
      */

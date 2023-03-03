@@ -1,8 +1,17 @@
 package org.insecurity_quiz.Quiz_Data_Management.Question_Types;
 
+import org.checkerframework.checker.fenum.qual.SwingElementOrientation;
 import org.insecurity_quiz.Quiz_Data_Management.Question;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class SelectCorrectQuestion extends Question {
+    /*
+    Constants
+     */
+    public static String SEPARATOR = ",";
+
     /*
     Public facing methods
      */
@@ -12,31 +21,24 @@ public class SelectCorrectQuestion extends Question {
         this.answer = answer;
         this.answerFollowup = answerFollowup;
     }
-    @Override
-    public QuestionTypes getQuestionType() {
-        return QuestionTypes.SelectCorrect;
-    }
-
-    @Override
-    public String getQuestion() {
-        return this.question;
-    }
-
+    //Note: Assumption is that there are no repeats in answer or input.
     @Override
     public boolean validateAnswer(String answer) {
-        return false;
-    }
+        String[] answers = this.answer.split(SEPARATOR);
+        List<String> answersArray = Arrays.asList(answers);
+        String[] inputs = answer.split(SEPARATOR);
 
-    @Override
-    public String getQuestionHint(){
-        return this.questionHint;
-    }
+        int numAnswers = answers.length;
+        int numMatch = 0;
+        for (String input:inputs) {
+            boolean match = answersArray.contains(input);
+            if (match) {
+                numMatch += 1;
+            }
+        }
 
-    @Override
-    public String getAnswerFollowup() {
-        return this.answerFollowup;
+        return numMatch == numAnswers;
     }
-
     /*
     Internal methods
      */

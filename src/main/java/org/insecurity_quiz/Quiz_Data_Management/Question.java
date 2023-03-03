@@ -12,13 +12,21 @@ public abstract class Question {
     protected String questionHint;
     protected String answerFollowup;
 
-    public abstract QuestionTypes getQuestionType();
+    public QuestionTypes getQuestionType() {
+        return QuestionTypes.Numerical;
+    }
 
-    public abstract String getQuestion();
+    public String getQuestion() {
+        return this.question;
+    }
 
     public abstract boolean validateAnswer(String answer);
 
-    public abstract String getQuestionHint();
+    public String getQuestionHint() {
+        return this.questionHint;
+    }
 
-    public abstract String getAnswerFollowup();
+    public String getAnswerFollowup() {
+        return this.answerFollowup;
+    }
 }
