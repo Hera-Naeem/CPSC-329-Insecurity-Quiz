@@ -35,7 +35,7 @@
                   <Insets left="10.0" />
                </VBox.margin>
             </Label>
-            <TextField prefHeight="92.0" prefWidth="513.0" promptText="Your Answer..." />
+            <TextField fx:id="answerLabel"  prefHeight="92.0" prefWidth="513.0" promptText="Your Answer..." />
          </children>
       </VBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
