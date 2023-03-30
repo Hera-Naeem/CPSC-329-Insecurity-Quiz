@@ -30,11 +30,12 @@
       </HBox>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label prefHeight="31.0" prefWidth="59.0" text="Answer">
+            <Label prefHeight="31.0" prefWidth="68.0" text="Answer">
                <VBox.margin>
                   <Insets left="10.0" />
                </VBox.margin>
             </Label>
+            <TextField prefHeight="92.0" prefWidth="513.0" promptText="Your Answer..." />
          </children>
       </VBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
