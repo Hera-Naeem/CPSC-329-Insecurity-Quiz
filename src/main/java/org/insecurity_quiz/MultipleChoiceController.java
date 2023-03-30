@@ -41,6 +41,7 @@ public class MultipleChoiceController {
 
 
         if (counter == 1){
+            quesIndexLabel.setText(String.valueOf(counter));
             quesLabel.setText("I am asking you a question.");
         }
     }
