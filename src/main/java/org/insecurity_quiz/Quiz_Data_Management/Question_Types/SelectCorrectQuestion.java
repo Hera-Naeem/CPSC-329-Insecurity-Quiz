@@ -1,7 +1,6 @@
 package org.insecurity_quiz.Quiz_Data_Management.Question_Types;
 
-import org.checkerframework.checker.fenum.qual.SwingElementOrientation;
-import org.insecurity_quiz.Quiz_Data_Management.Question;
+import org.insecurity_quiz.Question;
 
 import java.util.Arrays;
 import java.util.List;

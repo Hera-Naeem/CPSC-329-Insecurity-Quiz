@@ -1,6 +1,6 @@
 package org.insecurity_quiz.Quiz_Data_Management.Question_Types;
 
-import org.insecurity_quiz.Quiz_Data_Management.Question;
+import org.insecurity_quiz.Question;
 
 public class ShortAnswerQuestion extends Question {
     /*
