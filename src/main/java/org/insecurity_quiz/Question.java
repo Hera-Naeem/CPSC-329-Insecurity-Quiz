@@ -1,8 +1,8 @@
-package org.insecurity_quiz.Quiz_Data_Management;
+package org.insecurity_quiz;
 
 
 
-public abstract class Question {
+public abstract class Question{
     public enum QuestionTypes {
         MultipleChoice, ShortAnswer, SelectCorrect, Numerical;
     }
