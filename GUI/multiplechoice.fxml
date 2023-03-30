@@ -1,14 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="380.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.HelloController">
+<VBox prefHeight="380.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.MultipleChoiceController">
    <children>
-      <Button layoutX="108.0" layoutY="300.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="160.0" text="D)" />
-      <Button layoutX="108.0" layoutY="253.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="160.0" text="C)" />
-      <Button layoutX="108.0" layoutY="206.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="160.0" text="B)" />
-      <Button layoutX="108.0" layoutY="156.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="160.0" text="A)" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="quesIndexLabel" prefHeight="58.0" prefWidth="48.0" text="Index" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="quesLabel" prefHeight="55.0" prefWidth="95.0" text="Question" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label fx:id="ansLabel" prefHeight="31.0" prefWidth="59.0" text="Answer">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="36.0" prefWidth="376.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#optionOneEvent" text="Button">
+                     <HBox.margin>
+                        <Insets left="120.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="mulButton2" mnemonicParsing="false" onAction="#optionTwoEvent" text="Button">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="29.0" prefWidth="376.0">
+               <children>
+                  <Button fx:id="mulButton3" mnemonicParsing="false" onAction="#optionThreeEvent" text="Button">
+                     <HBox.margin>
+                        <Insets left="120.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="mulButton4" mnemonicParsing="false" onAction="#optionFourEvent" text="Button">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="nextQuestionButton" mnemonicParsing="false" onAction="#nextQuesEvent" prefHeight="17.0" prefWidth="58.0" text="Next">
+               <HBox.margin>
+                  <Insets left="120.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="getHintButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getHintEvent" text="Get Hint">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>
