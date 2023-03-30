@@ -45,7 +45,7 @@
                   <Insets left="150.0" />
                </HBox.margin>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" text="Get Hint">
+            <Button fx:id="getHintButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getHintEvent" text="Get Hint">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
