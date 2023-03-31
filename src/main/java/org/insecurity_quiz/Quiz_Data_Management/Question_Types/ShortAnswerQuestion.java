@@ -6,7 +6,7 @@ public class ShortAnswerQuestion extends Question {
     /*
     Public facing methods
      */
-    public ShortAnswerQuestion(String question, String questionHint, String answer, String answerFollowup) {
+    public ShortAnswerQuestion(String question, String questionHint, String answer, String answerFollowup, String followup) {
         this.question = question;
         this.questionHint = questionHint;
         this.answer = answer;

@@ -14,7 +14,7 @@ public class SelectCorrectQuestion extends Question {
     /*
     Public facing methods
      */
-    public SelectCorrectQuestion(String question, String questionHint, String answer, String answerFollowup) {
+    public SelectCorrectQuestion(String question, String questionHint, String answer, String answerFollowup, String followup) {
         this.question = question;
         this.questionHint = questionHint;
         this.answer = answer;

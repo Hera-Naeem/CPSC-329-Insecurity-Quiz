@@ -32,10 +32,10 @@
                   <Insets left="10.0" />
                </VBox.margin>
             </Label>
-            <CheckBox mnemonicParsing="false" text="CheckBox" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" />
+            <CheckBox fx:id="optn1Box" mnemonicParsing="false" onAction="#checkedOneEvent" text="CheckBox" />
+            <CheckBox fx:id="optn2Box" mnemonicParsing="false" onAction="#checkedTwoEvent" text="CheckBox" />
+            <CheckBox fx:id="optn3Box" mnemonicParsing="false" onAction="#checkedThreeEvent" text="CheckBox" />
+            <CheckBox fx:id="optn4Box" mnemonicParsing="false" onAction="#checkedFourEvent" text="CheckBox" />
          </children>
       </VBox>
       <HBox prefHeight="100.0" prefWidth="200.0">

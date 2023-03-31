@@ -32,7 +32,7 @@
             </Label>
             <HBox prefHeight="36.0" prefWidth="376.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#optionOneEvent" text="Button">
+                  <Button fx:id="mulButton1" mnemonicParsing="false" onAction="#optionOneEvent" text="Button">
                      <HBox.margin>
                         <Insets left="120.0" />
                      </HBox.margin>

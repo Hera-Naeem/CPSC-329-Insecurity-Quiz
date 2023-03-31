@@ -6,7 +6,7 @@ public class NumericalQuestion extends Question {
     /*
     Public facing methods
      */
-    public NumericalQuestion(String question, String questionHint, String answer, String answerFollowup) {
+    public NumericalQuestion(String question, String questionHint, String answer, String answerFollowup, String followup) {
         this.question = question;
         this.questionHint = questionHint;
         this.answer = answer;

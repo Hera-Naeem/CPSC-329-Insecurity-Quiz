@@ -47,6 +47,10 @@ public class MultipleChoiceController {
         if (counter == 1){
             quesIndexLabel.setText(String.valueOf(counter));
             quesLabel.setText("I am asking you a question.");
+            mulButton1.setText("Optn 1");
+            mulButton2.setText("Optn 2");
+            mulButton3.setText("Optn 3");
+            mulButton4.setText("Optn 4");
         }
     }
 

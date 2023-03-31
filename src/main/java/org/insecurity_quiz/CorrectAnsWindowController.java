@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -19,6 +20,11 @@ public class CorrectAnsWindowController {
 
     @FXML
     private Button nextQuestionButton;
+
+
+    @FXML
+    private CheckBox optn1Box, optn2Box, optn3Box, optn4Box;
+
     int counter = 1;
     static int correct = 0;
     static int wrong = 0;
@@ -37,6 +43,11 @@ public class CorrectAnsWindowController {
         if (counter == 1){
             quesIndexLabel.setText(String.valueOf(counter));
             quesLabel.setText("I am asking you a question.");
+
+            optn1Box.setText("Option 1");
+            optn2Box.setText("Option 2");
+            optn3Box.setText("Option 3");
+            optn4Box.setText("Option 4");
         }
     }
 
@@ -70,4 +81,15 @@ public class CorrectAnsWindowController {
         hintStage.show();
     }
 
+    public void checkedOneEvent(ActionEvent actionEvent) {
+    }
+
+    public void checkedTwoEvent(ActionEvent actionEvent) {
+    }
+
+    public void checkedThreeEvent(ActionEvent actionEvent) {
+    }
+
+    public void checkedFourEvent(ActionEvent actionEvent) {
+    }
 }
