@@ -1,5 +1,5 @@
-Type,Question,Question Hint,Answer,Answer Followup
-MultipleChoice,mc question,mc hint,a,mc followup
-ShortAnswer,sa question,sa hint,sa answer,sa followup
-SelectCorrect,sc question,sc hint,"a, b, c, d",sc followup
-Numerical,n question,n hint,1,n followup
+Type,Question,Options,Question Hint,Answer,Answer Followup
+MultipleChoice,mc question,"option a, option b, option c, option d",mc hint,a,mc followup
+ShortAnswer,sa question,,sa hint,sa answer,sa followup
+SelectCorrect,sc question,"option a, option b, option c, option d",sc hint,"a, b, c, d",sc followup
+Numerical,n question,,n hint,1,n followup
