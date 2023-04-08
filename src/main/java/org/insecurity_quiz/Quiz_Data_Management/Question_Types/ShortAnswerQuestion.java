@@ -1,12 +1,12 @@
 package org.insecurity_quiz.Quiz_Data_Management.Question_Types;
 
-import org.insecurity_quiz.Question;
+import org.insecurity_quiz.Quiz_Data_Management.Question;
 
 public class ShortAnswerQuestion extends Question {
     /*
     Public facing methods
      */
-    public ShortAnswerQuestion(String question, String[] options, String answer) {
+    public ShortAnswerQuestion(String question, String questionHint, String answer, String answerFollowup) {
         this.question = question;
         this.answer = answer;
     }

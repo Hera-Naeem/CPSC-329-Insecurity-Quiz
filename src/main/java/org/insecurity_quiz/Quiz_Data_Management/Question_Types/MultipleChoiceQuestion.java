@@ -1,37 +1,29 @@
 package org.insecurity_quiz.Quiz_Data_Management.Question_Types;
 
-import java.util.ArrayList;
-
-import org.insecurity_quiz.Quiz_Data_Management.QuestionLoader;
-import org.insecurity_quiz.Question;
+import org.insecurity_quiz.Quiz_Data_Management.Question;
 
 public class MultipleChoiceQuestion extends Question {
 
-
-    public MultipleChoiceQuestion(String question, String[] options, String answer) {
+    /*
+    Public facing methods
+     */
+    public static String SEPARATOR = "|";
+    protected String[] options;
+    public MultipleChoiceQuestion(String question, String optionsStr, String questionHint, String answer, String answerFollowup) {
         this.question = question;
-        this.options = options;
         this.answer = answer;
+        this.options = optionsStr.split(SEPARATOR);
     }
-
-
+    public String[] getOptions() {
+        return this.options.clone();
+    }
     @Override
     public boolean validateAnswer(String answer) {
-        return this.answer.equals(answer);
+        return answer.equals(this.answer);
     }
 
-    public String getOptionOne() {
-        return options[0];
-    }
-
-    public String getOptionTwo() {
-        return options[1];
-    }
-
-    public String getOptionThree() {
-        return options[2];
-    }
-
-    public String getOptionFour() {return options[3];}
+    /*
+    Internal methods
+     */
 
 }

@@ -10,7 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.insecurity_quiz.Quiz_Data_Management.QuestionLoader;
-import org.insecurity_quiz.Question;
+import org.insecurity_quiz.Quiz_Data_Management.Question;
 
 import java.io.IOException;
 
@@ -46,7 +46,7 @@ public class MultipleChoiceController {
 
     private void loadQuestions() {
         try {
-            questionLoader = new QuestionLoader("src/main/java/org/insecurity_quiz/testFile.csv");
+            questionLoader = new QuestionLoader("");
             currentQuestion = questionLoader.getRandomQuestions(1)[0];
 
             // Set the question text to the question label in the UI
