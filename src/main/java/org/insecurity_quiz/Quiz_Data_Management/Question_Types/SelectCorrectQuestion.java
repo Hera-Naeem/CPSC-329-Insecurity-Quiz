@@ -14,11 +14,10 @@ public class SelectCorrectQuestion extends Question {
     /*
     Public facing methods
      */
-    public SelectCorrectQuestion(String question, String questionHint, String answer, String answerFollowup, String followup) {
+    public SelectCorrectQuestion(String question, String[] options, String annswer) {
         this.question = question;
-        this.questionHint = questionHint;
         this.answer = answer;
-        this.answerFollowup = answerFollowup;
+        this.options = options;
     }
     //Note: Assumption is that there are no repeats in answer or input.
     @Override
