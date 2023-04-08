@@ -1,16 +1,34 @@
 package org.insecurity_quiz;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.insecurity_quiz.Quiz_Data_Management.Question_Types.MultipleChoiceQuestion;
+import org.insecurity_quiz.Quiz_Data_Management.QuestionLoader;
+import org.insecurity_quiz.Question;
+
+import java.io.IOException;
 
 public class MultipleChoiceController {
+
+    @FXML
+    private RadioButton optionBtn1;
+    @FXML
+    private RadioButton optionBtn2;
+    @FXML
+    private RadioButton optionBtn3;
+    @FXML
+    private RadioButton optionBtn4;
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private VBox root;
 
     @FXML
     private Label quesIndexLabel;
@@ -18,89 +36,132 @@ public class MultipleChoiceController {
     @FXML
     private Label quesLabel;
 
-    @FXML
-    private Button nextQuestionButton;
+    private QuestionLoader questionLoader;
+    private Question currentQuestion;
 
     @FXML
-    private Button getHintButton;
-
-    @FXML
-    private Button mulButton1, mulButton2, mulButton3, mulButton4;
-
-    private MultipleChoiceQuestion currentQuestion;
-
-    int counter = 1;
-    static int correct = 0;
-    static int wrong = 0;
-
-    @FXML
-    private void initialize() {
+    public void initialize() {
         loadQuestions();
     }
 
-    @FXML
     private void loadQuestions() {
-        // TODO: load questions from Quiz_Data_Management
-        // and display the first question
+        try {
+            questionLoader = new QuestionLoader("src/main/java/org/insecurity_quiz/testFile.csv");
+            currentQuestion = questionLoader.getRandomQuestions(1)[0];
 
+            // Set the question text to the question label in the UI
+            quesLabel.setText(currentQuestion.getQuestion());
 
-        if (counter == 1){
-            quesIndexLabel.setText(String.valueOf(counter));
-            quesLabel.setText("I am asking you a question.");
-            mulButton1.setText("Optn 1");
-            mulButton2.setText("Optn 2");
-            mulButton3.setText("Optn 3");
-            mulButton4.setText("Optn 4");
+            // Create radio buttons for the answer options
+            optionBtn1.setText(currentQuestion.getOptions()[0]);
+            optionBtn2.setText(currentQuestion.getOptions()[1]);
+            optionBtn3.setText(currentQuestion.getOptions()[2]);
+            optionBtn4.setText(currentQuestion.getOptions()[3]);
+        } catch (IOException e) {
+            showErrorDialog("Error loading questions from file.");
+            Platform.exit();
         }
     }
 
     @FXML
+    private void showErrorDialog(String errorMessage) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(errorMessage);
+        alert.showAndWait();
+    }
+
+    @FXML
     public void nextQuesEvent(ActionEvent event) {
-        // TODO: check if an answer has been selected
-        // and display the next question
+        // Check if the user has selected an answer
+        if (optionBtn1.isSelected() || optionBtn2.isSelected() || optionBtn3.isSelected() || optionBtn4.isSelected()) {
+
+            // Check if the user's answer is correct
+            if (optionBtn1.isSelected() && optionBtn1.equals(currentQuestion.getAnswer())) {
+                showAnswerMessage(true);
+            } else if (optionBtn2.isSelected() && optionBtn2.equals(currentQuestion.getAnswer())) {
+                showAnswerMessage(true);
+            } else if (optionBtn3.isSelected() && optionBtn3.equals(currentQuestion.getAnswer())) {
+                showAnswerMessage(true);
+            } else if (optionBtn4.isSelected() && optionBtn4.equals(currentQuestion.getAnswer())) {
+                showAnswerMessage(true);
+            } else {
+                showAnswerMessage(false);
+            }
+
+
+            // Clear the selected answer
+            ToggleGroup toggleGroup = new ToggleGroup();
+            optionBtn1.setToggleGroup(toggleGroup);
+            optionBtn2.setToggleGroup(toggleGroup);
+            optionBtn3.setToggleGroup(toggleGroup);
+            optionBtn4.setToggleGroup(toggleGroup);
+
+            // Load the next question
+            currentQuestion = questionLoader.getRandomQuestions(1)[0];
+            quesLabel.setText(currentQuestion.getQuestion());
+            optionBtn1.setText(currentQuestion.getOptions()[0]);
+            optionBtn2.setText(currentQuestion.getOptions()[1]);
+            optionBtn3.setText(currentQuestion.getOptions()[2]);
+            optionBtn4.setText(currentQuestion.getOptions()[3]);
+        } else {
+            showErrorDialog("Please select an answer before proceeding.");
+        }
     }
 
-    @FXML
-    public void getHintEvent(ActionEvent actionEvent) {
-        // TODO: display a hint for the current question
-        // Create a new window
-        Stage hintStage = new Stage();
-        hintStage.setTitle("Hint");
+    private void showAnswerMessage(boolean isCorrect) {
+        String message = isCorrect ? "Correct!" : "Incorrect!";
+        Label label = new Label(message);
+        label.setPadding(new Insets(10));
+        label.setStyle("-fx-font-size: 16");
 
-        // Create a label to display the hint
-        Label hintLabel = new Label("Here's a hint for the current question!");
-
-        // Create a button to close the window
         Button closeButton = new Button("Close");
-        closeButton.setOnAction(e -> hintStage.close());
+        closeButton.setOnAction(event -> {
+            Stage stage = (Stage) label.getScene().getWindow();
+            stage.close();
+        });
 
-        // Create a layout for the window
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(hintLabel, closeButton);
+        VBox layout = new VBox(label, closeButton);
         layout.setAlignment(Pos.CENTER);
+        layout.setSpacing(20);
 
-        // Set the layout and show the window
-        hintStage.setScene(new Scene(layout));
-        hintStage.show();
+        Scene scene = new Scene(layout, 300, 150);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
-    @FXML
-    public void optionFourEvent(ActionEvent actionEvent) {
-        // TODO: record the selected answer and check if it is correct
+    public void optionOneSelected(ActionEvent actionEvent) {
+        optionBtn1.setSelected(true);
+        optionBtn2.setSelected(false);
+        optionBtn3.setSelected(false);
+        optionBtn4.setSelected(false);
     }
 
-    @FXML
-    public void optionThreeEvent(ActionEvent actionEvent) {
-        // TODO: record the selected answer and check if it is correct
+    public void optionTwoSelected(ActionEvent actionEvent) {
+        optionBtn1.setSelected(false);
+        optionBtn2.setSelected(true);
+        optionBtn3.setSelected(false);
+        optionBtn4.setSelected(false);
     }
 
-    @FXML
-    public void optionTwoEvent(ActionEvent actionEvent) {
-        // TODO: record the selected answer and check if it is correct
+    public void optionThreeSelected(ActionEvent actionEvent) {
+        optionBtn1.setSelected(false);
+        optionBtn2.setSelected(false);
+        optionBtn3.setSelected(true);
+        optionBtn4.setSelected(false);
     }
 
-    @FXML
-    public void optionOneEvent(ActionEvent actionEvent) {
-        // TODO: record the selected answer and check if it is correct
+    public void optionFourSelected(ActionEvent actionEvent) {
+        optionBtn1.setSelected(false);
+        optionBtn2.setSelected(false);
+        optionBtn3.setSelected(false);
+        optionBtn4.setSelected(true);
+    }
+
+    public void backBtnEvent(ActionEvent actionEvent) {
+        Stage currentStage = (Stage) root.getScene().getWindow();
+        currentStage.close();
     }
 }

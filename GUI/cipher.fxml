@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="307.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.QuizController">
+    <children>
+        <Label fx:id="decryptQue" layoutX="122.0" layoutY="14.0" prefHeight="38.0" prefWidth="212.0" text="Can you decrypt this?">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <TextField fx:id="plainTextField" layoutX="170.0" layoutY="138.0" onAction="#handlePlainTextButtonAction" prefHeight="38.0" prefWidth="177.0" />
+        <Label fx:id="plainTextAns" layoutX="86.0" layoutY="144.0" text="Plain Text:">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Button fx:id="tryStartQuiz" layoutX="181.0" layoutY="195.0" mnemonicParsing="false" onAction="#correctCipher" text="Start Quiz" />
+        <Label fx:id="cipherText" layoutX="96.0" layoutY="80.0" text="VMZQFXAHQERDASE" textFill="#191717">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <Label fx:id="keyLabel" layoutX="180.0" layoutY="52.0" text="KEY = 12" textFill="#b53131">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+    </children>
+</VBox>
