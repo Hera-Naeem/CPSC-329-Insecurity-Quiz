@@ -33,7 +33,7 @@ public class QuestionLoader {
      */
 
     public QuestionLoader(String questionFile) throws IOException {
-        ColumnType[] types = {ColumnType.STRING, ColumnType.STRING,ColumnType.STRING, ColumnType.STRING, ColumnType.STRING};
+        ColumnType[] types = {ColumnType.STRING, ColumnType.STRING,ColumnType.STRING, ColumnType.STRING, ColumnType.STRING, ColumnType.STRING};
         CsvReadOptions.Builder builder = CsvReadOptions.builder(questionFile).columnTypes(types);
         CsvReadOptions options = builder.build();
 
