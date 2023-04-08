@@ -20,6 +20,8 @@ import static java.lang.Math.min;
 public class QuestionLoader {
     static final String TYPE_COLUMN = "Type";
     static final String QUESTION_COLUMN = "Question";
+
+    static final String QUESTION_OPTIONS = "Options";
     static final String QUESTION_HINT_COLUMN = "Question Hint";
     static final String ANSWER_COLUMN = "Answer";
     static final String ANSWER_FOLLOWUP_COLUMN = "Answer Followup";
@@ -60,16 +62,16 @@ public class QuestionLoader {
     Internal methods
      */
     //Todo: This should be refactored into a Question class, as this is a factory method for the questions.
-    protected static Question CreateQuestion(String type, String question, String questionHint, String answer, String answerFollowup) {
+    protected static Question CreateQuestion(String type, String question, String options, String questionHint, String answer, String answerFollowup) {
         Question questionObj = null;
         if (type.equals(Question.QuestionTypes.MultipleChoice.toString())) {
-            questionObj = new MultipleChoiceQuestion(question, questionHint, answer, answerFollowup);
+            questionObj = new MultipleChoiceQuestion(question, options, questionHint, answer, answerFollowup);
         }
         else if (type.equals(Question.QuestionTypes.Numerical.toString())) {
             questionObj = new NumericalQuestion(question, questionHint, answer, answerFollowup);
         }
         else if (type.equals(Question.QuestionTypes.SelectCorrect.toString())) {
-            questionObj = new SelectCorrectQuestion(question, questionHint, answer, answerFollowup);
+            questionObj = new SelectCorrectQuestion(question, options, questionHint, answer, answerFollowup);
         }
         else if (type.equals(Question.QuestionTypes.ShortAnswer.toString())) {
             questionObj = new ShortAnswerQuestion(question, questionHint, answer, answerFollowup);
@@ -81,11 +83,12 @@ public class QuestionLoader {
     protected Question makeQuestion(int i) {
         String type = questionData.stringColumn(TYPE_COLUMN).get(i);
         String question = questionData.stringColumn(QUESTION_COLUMN).get(i);
+        String options = questionData.stringColumn(QUESTION_OPTIONS).get(i);
         String questionHint = questionData.stringColumn(QUESTION_HINT_COLUMN).get(i);
         String answer = questionData.stringColumn(ANSWER_COLUMN).get(i);
         String answerFollowup = questionData.stringColumn(ANSWER_FOLLOWUP_COLUMN).get(i);
 
-        return CreateQuestion(type, question, questionHint, answer, answerFollowup);
+        return CreateQuestion(type, question, options, questionHint, answer, answerFollowup);
     }
     //Given a number of rows, returns an array containing the numbers from zero to that number, shuffled.
     //Todo: Refactor to a utility class?
