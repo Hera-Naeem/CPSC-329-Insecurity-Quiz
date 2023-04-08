@@ -1,0 +1,77 @@
+Q: What is the recommended maximum number of attempts before lockout according to the 2019 NIST guidelines?
+   Answer: There is no specific recommended maximum number of attempts, but organizations should consider factors such as the sensitivity of the information being protected and the likelihood of an attack.
+   Hint: Locking out users after too many failed attempts can help prevent brute force attacks.
+   Followup: What are some other ways organizations can protect against brute force attacks?
+
+ Q: Which type of online guessing barrier involves limiting the number of guesses an attacker can make in a certain amount of time?
+   Answer: Rate-limiting
+   Hint: This barrier slows down attackers and makes it harder for them to guess passwords.
+   Followup: How can organizations determine what rate limits to set?
+
+ Q: What is two-factor authentication (2FA)?
+   Answer: Using two different methods to verify identity before granting access to an account.
+   Hint: This adds an extra layer of security beyond just a password.
+   Followup: What are some common methods used for two-factor authentication?
+
+ Q: Which factor determines how good a password is?
+   Answer: The randomness of the password generation process.
+   Hint: A truly random password is much harder to guess than one that follows a pattern or uses personal information.
+   Followup: How can users ensure that their passwords are random?
+
+ Q: What are some best practices for creating strong passwords?
+    Answer: Using a mix of uppercase and lowercase letters, numbers, and symbols in your password; avoiding personal information in your password; using unique passwords for each account you have; and making sure your password generation process is random.
+    Hint: A strong password should be complex and unique.
+    Followup: How often should users change their passwords?
+
+ Q: Which type of online attack involves tricking users into revealing sensitive information?
+    Answer: Social engineering attack
+    Hint: This type of attack relies on psychological manipulation rather than technical exploits.
+    Followup: What are some common examples of social engineering attacks?
+
+ Q: What is the purpose of a blocklist in password security?
+    Answer: To prevent users from using frequently used passwords.
+    Hint: A blocklist can help prevent attackers from guessing common passwords.
+    Followup: How often should organizations update their blocklists?
+	
+--
+Confinement
+--
+
+Q: What is sandboxing?
+A. Giving each program its own file and memory separate from any other program, so that it is free to do things within its own confined space.
+
+Q: How might sandboxing via virtual machines fail?
+A: There are a number of answers, but deliberately lagging the system and timing the system to see if other fellow CPU-laggers are on the system was a method discussed in class.
+
+--
+Unix Permissions
+--
+
+Q: Name three operating systems based on UNIX.
+A: Many possible answers, but we have MacOS, Ubuntu, and Debian
+
+Q: Why is sudo usage logged on a UNIX system?
+A: Accountability, so that whoever owns the system can keep track of what's being done on the system, to improve security...
+
+--
+Networking
+--
+
+Q: Can you change your MAC address?
+A: Yes
+
+Q: Can you change your MAC address?
+A: Yes
+
+Q: What is NMap used for?
+A: Scanning a network for open ports, vulnerabilities, active machines, etc...
+
+--
+Network Privacy
+--
+
+Q: What is a VPN good for?
+A: Obscuring your identity from eavesdroppers by rerouting your communications through a third party server.
+
+Q: What are some of the problems with VPNs?
+A: You need to trust the VPN, Use of one may be suspicious, VPNs can be painfully slow, VPNs can be costly, doesn't help if the website you want to visit is itself dangerous (gives you malicious files), etc.

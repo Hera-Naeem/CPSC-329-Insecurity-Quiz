@@ -1,0 +1,93 @@
+Select all:
+
+Q: Which of the following are characteristics of a good hash function for security purposes? (Select all that apply)
+   a) Fast computation time 
+   b) Easy determination of corresponding input from output 
+   c) Resistance to strong and weak collisions 
+   d) Varying output lengths 
+  Answer: a, c 
+
+  Hint: The characteristics that make a hash function secure are not necessarily the same as those that make it useful for other purposes.
+
+  Followup: Why might someone want to use a hash function with varying output lengths?
+ 
+Q2: Select all that apply. What are the principles of secure design?
+a) Psychological acceptability
+b) Separation of privilege
+c) Complete mediation
+d) Open design
+
+Answer: a, b, c, d
+Hint: There are four principles in total.
+
+Followup: Why is it important to consider all four principles when designing a secure system?
+--
+
+--
+Website Basics
+--
+Q: Which of the following can be components of a website?
+a. HTML Pages
+b. Images
+c. Servers
+d. Media
+
+A: a, b, d.
+
+Q: Which of the following are files what can be hosted on a server?
+a. Professors 
+b. Text files
+c. PNGs
+d. MP4s
+
+A: b, c, d.
+
+--
+Confinement
+--
+
+Q: What does an operating system manage?
+a. Control and scheduling the execution of programs
+b. Hardware
+c. Access control
+d. Heart surgery
+
+A: a, b, c.
+
+Q: What are ways to confine programs you distrust:
+a. Running it on a separate machine
+b. Run it when there's no other sensitive processes on the system
+c. Hide it within your secret folder
+d. Give each program the sense that it is the only program on the system
+
+A: a, b, d.
+
+--
+UNIX Permissions
+--
+
+Q: What can sudo do?
+a. Run as root
+b. Run as another user
+c. Nothing
+d. Execute commands as another user.
+A: a, b, d.
+
+--
+Network Privacy
+--
+
+Q: If someone intercepts your IP network packet, what can they uncover?
+a. Source IP
+b. Packet Data
+c. Sending Application
+d. Destination IP
+A: a, b, d
+
+Q: What are some of the ways you can be tracked online?
+a. Timing analysis
+b. Hard drive files
+c. Cookies
+d. Browser fingerprint
+A: a, c, d.
+
