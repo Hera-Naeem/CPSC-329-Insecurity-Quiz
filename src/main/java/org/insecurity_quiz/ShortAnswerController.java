@@ -16,6 +16,8 @@ import org.insecurity_quiz.Quiz_Data_Management.QuestionLoader;
 import java.io.IOException;
 
 public class ShortAnswerController {
+    @FXML
+    private VBox root;
 
     public TextField answerLabel;
     @FXML
@@ -89,7 +91,9 @@ public class ShortAnswerController {
             showErrorDialog("Wrong answer!");
         }
     }
-
+    @FXML
     public void backBtnEvent(ActionEvent actionEvent) {
+        Stage currentStage = (Stage) root.getScene().getWindow();
+        currentStage.close();
     }
 }

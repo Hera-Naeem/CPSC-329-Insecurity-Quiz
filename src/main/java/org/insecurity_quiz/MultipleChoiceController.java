@@ -64,14 +64,22 @@ public class MultipleChoiceController {
     }
 
     @FXML
-    private void showErrorDialog(String errorMessage) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText(errorMessage);
-        alert.showAndWait();
-    }
+    private void showErrorDialog(String s) {
+        Stage errorStage = new Stage();
+        errorStage.setTitle("Error");
 
+        Label errorLabel = new Label(s);
+
+        Button closeButton = new Button("Close");
+        closeButton.setOnAction(e -> errorStage.close());
+
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(errorLabel, closeButton);
+        layout.setAlignment(Pos.CENTER);
+
+        errorStage.setScene(new Scene(layout));
+        errorStage.show();
+    }
     @FXML
     public void nextQuesEvent(ActionEvent event) {
         // Check if the user has selected an answer
