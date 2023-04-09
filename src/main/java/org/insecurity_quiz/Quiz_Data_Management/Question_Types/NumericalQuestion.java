@@ -9,6 +9,9 @@ public class NumericalQuestion extends Question {
     public NumericalQuestion(String question, String questionHint, String answer, String answerFollowup) {
         this.question = question;
         this.answer = answer;
+        this.options = null;
+        this.questionHint = questionHint;
+        this.answerFollowup = answerFollowup;
     }
     @Override
     public boolean validateAnswer(String answer) {

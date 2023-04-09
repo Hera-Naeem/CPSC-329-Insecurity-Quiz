@@ -7,14 +7,13 @@ public class MultipleChoiceQuestion extends Question {
     /*
     Public facing methods
      */
-    public static String SEPARATOR = "|";
     protected String[] options;
     public MultipleChoiceQuestion(String question, String optionsStr, String questionHint, String answer, String answerFollowup) {
         this.question = question;
-        //this.questionHint = questionHint;
         this.answer = answer;
-        //this.answerFollowup = answerFollowup;
-        this.options = optionsStr.split(SEPARATOR);
+        this.options = optionsStr.split("\\|");
+        this.questionHint = questionHint;
+        this.answerFollowup = answerFollowup;
     }
     public String[] getOptions() {
         return this.options.clone();
@@ -23,9 +22,9 @@ public class MultipleChoiceQuestion extends Question {
     public boolean validateAnswer(String answer) {
         return answer.equals(this.answer);
     }
+}
 
     /*
     Internal methods
      */
 
-}

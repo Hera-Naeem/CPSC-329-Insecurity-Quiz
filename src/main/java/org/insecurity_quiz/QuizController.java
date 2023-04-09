@@ -136,94 +136,64 @@ public class QuizController{
 
         // Load the FXML file for the new scene
         FXMLLoader loader = new FXMLLoader();
-        VBox root = loader.load(new FileInputStream("GUI/questions.fxml"));
-
-        // Create a new scene with the loaded FXML file as the root
-        Scene scene = new Scene(root);
-
-        // Set the controller for the FXMLLoader instance
-        QuizController selectionController = (QuizController) loader.getController();
-
-
-        // Set the new scene to the application stage
-        stage.setScene(scene);
-
-    }
-    @FXML
-    public void multipleChoiceWindow(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        FXMLLoader loader = new FXMLLoader();
-        VBox root = loader.load(new FileInputStream("GUI/multiplechoice.fxml"));
-
-        // Create a new scene with the loaded FXML file as the root
-        Scene scene = new Scene(root);
-
-        // Set the controller for the FXMLLoader instance
-        MultipleChoiceController selectionController = loader.getController();
-
-        // Set the new scene to the application stage
-        stage.setScene(scene);
-    }
-
-    @FXML
-    public void numericalWindow(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
-        FXMLLoader loader = new FXMLLoader();
-        VBox root = loader.load(new FileInputStream("GUI/numerical.fxml"));
-
-        // Create a new scene with the loaded FXML file as the root
-        Scene scene = new Scene(root);
-
-        // Set the controller for the FXMLLoader instance
-        NumericalController selectionController = (NumericalController) loader.getController();
-
-
-        // Set the new scene to the application stage
-        stage.setScene(scene);
-    }
-
-    @FXML
-    public void shortAnsWindow(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
-        FXMLLoader loader = new FXMLLoader();
         VBox root = loader.load(new FileInputStream("GUI/shortanswer.fxml"));
 
         // Create a new scene with the loaded FXML file as the root
         Scene scene = new Scene(root);
 
         // Set the controller for the FXMLLoader instance
-        ShortAnswerController selectionController = (ShortAnswerController) loader.getController();
+        ShortAnswerController selectionController = loader.getController();
 
 
         // Set the new scene to the application stage
         stage.setScene(scene);
+
     }
 
-    @FXML
-    public void CorrectAnsWindow(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
-        FXMLLoader loader = new FXMLLoader();
-        VBox root = loader.load(new FileInputStream("GUI/correctanswer.fxml"));
-
-        // Create a new scene with the loaded FXML file as the root
-        Scene scene = new Scene(root);
-
-        // Set the controller for the FXMLLoader instance
-        CorrectAnsWindowController selectionController = (CorrectAnsWindowController) loader.getController();
-
-
-        // Set the new scene to the application stage
-        stage.setScene(scene);
-    }
-
-
+/**
+ *     @FXML
+ *     public void numericalWindow(ActionEvent event) throws IOException {
+ *         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+ *
+ *
+ *         FXMLLoader loader = new FXMLLoader();
+ *         VBox root = loader.load(new FileInputStream("GUI/numerical.fxml"));
+ *
+ *         // Create a new scene with the loaded FXML file as the root
+ *         Scene scene = new Scene(root);
+ *
+ *         // Set the controller for the FXMLLoader instance
+ *         NumericalController selectionController = (NumericalController) loader.getController();
+ *
+ *
+ *         // Set the new scene to the application stage
+ *         stage.setScene(scene);
+ *     }
+ *
+ *     @FXML
+ *     public void shortAnsWindow(ActionEvent event) throws IOException {
+ *         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+ *
+ *
+ *         FXMLLoader loader = new FXMLLoader();
+ *         VBox root = loader.load(new FileInputStream("GUI/shortanswer.fxml"));
+ *
+ *         // Create a new scene with the loaded FXML file as the root
+ *         Scene scene = new Scene(root);
+ *
+ *         // Set the controller for the FXMLLoader instance
+ *         ShortAnswerController selectionController = (ShortAnswerController) loader.getController();
+ *
+ *
+ *         // Set the new scene to the application stage
+ *         stage.setScene(scene);
+ *     }
+ *
+ *
+ *
+ *
+ *
+ * */
 
     /**
      * The setApplicationStage method sets the application stage for this controller.

@@ -3,6 +3,7 @@ package org.insecurity_quiz;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,15 +28,17 @@ public class ShortAnswerController {
 
     @FXML
     private Label quesLabel;
-
+    
     @FXML
-    private Button nextQuestionButton;
+    private Button checkAnswerButton;
+    
 
     private QuestionLoader questionLoader;
     private Question currentQuestion;
     private int counter = 1;
     static int correct = 0;
     static int wrong = 0;
+
 
     @FXML
     private void initialize() {
@@ -45,7 +48,7 @@ public class ShortAnswerController {
     @FXML
     private void loadQuestions() {
         try {
-            questionLoader = new QuestionLoader("src/main/java/org/insecurity_quiz/testFile.csv");
+            questionLoader = new QuestionLoader("ShortAnswer.csv");
             currentQuestion = questionLoader.getRandomQuestions(1)[0];
 
             quesIndexLabel.setText(String.valueOf(counter));
@@ -74,7 +77,7 @@ public class ShortAnswerController {
     }
 
     @FXML
-    public void nextQuesEvent(ActionEvent event) {
+    public void checkAnswerEvent(ActionEvent event) {
         if (answerLabel.getText().isEmpty()) {
             showErrorDialog("Please enter your answer!");
             return;
@@ -83,17 +86,47 @@ public class ShortAnswerController {
         String userAnswer = answerLabel.getText();
         String correctAnswer = currentQuestion.getAnswer();
 
-        if (userAnswer.equalsIgnoreCase(correctAnswer)) {
-            correct++;
-            showErrorDialog("Correct answer!");
-        } else {
-            wrong++;
-            showErrorDialog("Wrong answer!");
-        }
+        boolean isCorrect = userAnswer.equalsIgnoreCase(correctAnswer);
+        showAnswerMessage(isCorrect, correctAnswer);
     }
+
+    private void showAnswerMessage(boolean isCorrect, String correctAnswer) {
+        String message;
+        if (isCorrect) {
+            message = "Correct!";
+        } else {
+            message = "The correct answer is: " + correctAnswer;
+        }
+
+        Label label = new Label(message);
+        label.setPadding(new Insets(10));
+        label.setStyle("-fx-font-size: 16");
+
+        Button closeButton = new Button("Close");
+        closeButton.setOnAction(event -> {
+            Stage stage = (Stage) label.getScene().getWindow();
+            stage.close();
+            checkAnswerButton.setText("Next Question");
+            checkAnswerButton.setOnAction(event2 -> loadNextQuestion());
+        });
+
+        VBox layout = new VBox(label, closeButton);
+        layout.setAlignment(Pos.CENTER);
+        layout.setSpacing(20);
+
+        Scene scene = new Scene(layout, 300, 150);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void loadNextQuestion() {
+    }
+
     @FXML
     public void backBtnEvent(ActionEvent actionEvent) {
         Stage currentStage = (Stage) root.getScene().getWindow();
         currentStage.close();
     }
+
 }

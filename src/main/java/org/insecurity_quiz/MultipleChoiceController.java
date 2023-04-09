@@ -17,6 +17,8 @@ import java.io.IOException;
 public class MultipleChoiceController {
 
     @FXML
+    private Button checkAnswerButton;
+    @FXML
     private RadioButton optionBtn1;
     @FXML
     private RadioButton optionBtn2;
@@ -44,6 +46,7 @@ public class MultipleChoiceController {
         loadQuestions();
     }
 
+
     private void loadQuestions() {
         try {
             questionLoader = new QuestionLoader("MultipleChoiceFile.csv");
@@ -63,6 +66,8 @@ public class MultipleChoiceController {
         }
     }
 
+
+
     @FXML
     private void showErrorDialog(String s) {
         Stage errorStage = new Stage();
@@ -81,23 +86,23 @@ public class MultipleChoiceController {
         errorStage.show();
     }
     @FXML
-    public void nextQuesEvent(ActionEvent event) {
+    public void checkAnswerEvent(ActionEvent event) {
         // Check if the user has selected an answer
         if (optionBtn1.isSelected() || optionBtn2.isSelected() || optionBtn3.isSelected() || optionBtn4.isSelected()) {
 
             // Check if the user's answer is correct
-            if (optionBtn1.isSelected() && optionBtn1.equals(currentQuestion.getAnswer())) {
-                showAnswerMessage(true);
-            } else if (optionBtn2.isSelected() && optionBtn2.equals(currentQuestion.getAnswer())) {
-                showAnswerMessage(true);
-            } else if (optionBtn3.isSelected() && optionBtn3.equals(currentQuestion.getAnswer())) {
-                showAnswerMessage(true);
-            } else if (optionBtn4.isSelected() && optionBtn4.equals(currentQuestion.getAnswer())) {
-                showAnswerMessage(true);
-            } else {
-                showAnswerMessage(false);
+            String userAnswer = "";
+            if (optionBtn1.isSelected()) {
+                userAnswer = "A";
+            } else if (optionBtn2.isSelected()) {
+                userAnswer = "B";
+            } else if (optionBtn3.isSelected()) {
+                userAnswer = "C";
+            } else if (optionBtn4.isSelected()) {
+                userAnswer = "D";
             }
-
+            boolean isCorrect = currentQuestion.validateAnswer(userAnswer);
+            showAnswerMessage(isCorrect);
 
             // Clear the selected answer
             ToggleGroup toggleGroup = new ToggleGroup();
@@ -116,6 +121,7 @@ public class MultipleChoiceController {
         } else {
             showErrorDialog("Please select an answer before proceeding.");
         }
+
     }
 
     private void showAnswerMessage(boolean isCorrect) {
@@ -128,6 +134,8 @@ public class MultipleChoiceController {
         closeButton.setOnAction(event -> {
             Stage stage = (Stage) label.getScene().getWindow();
             stage.close();
+            checkAnswerButton.setText("Next Question");
+            checkAnswerButton.setOnAction(event2 -> loadNextQuestion());
         });
 
         VBox layout = new VBox(label, closeButton);
@@ -138,6 +146,10 @@ public class MultipleChoiceController {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void loadNextQuestion() {
+
     }
 
     public void optionOneSelected(ActionEvent actionEvent) {

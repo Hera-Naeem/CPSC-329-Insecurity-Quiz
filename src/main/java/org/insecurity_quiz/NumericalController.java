@@ -4,6 +4,7 @@ package org.insecurity_quiz;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,6 +19,8 @@ import java.io.IOException;
 
 public class NumericalController {
     @FXML
+    private Button checkAnswerButton;
+    @FXML
     private VBox root;
 
     @FXML
@@ -30,9 +33,6 @@ public class NumericalController {
 
         @FXML
         private TextField answerField;
-
-        @FXML
-        private Button nextQuestionButton;
 
         private QuestionLoader questionLoader;
         private Question currentQuestion;
@@ -48,7 +48,7 @@ public class NumericalController {
         @FXML
         private void loadQuestions() {
             try {
-                questionLoader = new QuestionLoader("src/main/java/org/insecurity_quiz/testFile.csv");
+                questionLoader = new QuestionLoader("Numerical.csv");
                 currentQuestion = questionLoader.getRandomQuestions(1)[0];
 
                 quesIndexLabel.setText(String.valueOf(counter));
@@ -78,7 +78,7 @@ public class NumericalController {
     }
 
     @FXML
-    public void nextQuesEvent(ActionEvent event) {
+    public void checkAnswerEvent(ActionEvent event) {
         if (answerField.getText().isEmpty()) {
             showErrorDialog("Please enter your answer!");
             return;
@@ -90,16 +90,44 @@ public class NumericalController {
 
             if (userAnswer == correctAnswer) {
                 correct++;
-                showErrorDialog("Correct answer!");
+                showAnswerMessage(true);
+                checkAnswerButton.setText("Next Question");
+                checkAnswerButton.setOnAction(event2 -> loadNextQuestion());
             } else {
                 wrong++;
                 showErrorDialog("Wrong answer!");
             }
 
-
         } catch (NumberFormatException e) {
             showErrorDialog("Please enter a valid number!");
         }
+    }
+
+    private void loadNextQuestion() {
+    }
+
+    private void showAnswerMessage(boolean isCorrect) {
+        String message = isCorrect ? "Correct!" : "Incorrect!";
+        Label label = new Label(message);
+        label.setPadding(new Insets(10));
+        label.setStyle("-fx-font-size: 16");
+
+        Button closeButton = new Button("Close");
+        closeButton.setOnAction(event -> {
+            Stage stage = (Stage) label.getScene().getWindow();
+            stage.close();
+            checkAnswerButton.setText("Next Question");
+            checkAnswerButton.setOnAction(event2 -> loadNextQuestion());
+        });
+
+        VBox layout = new VBox(label, closeButton);
+        layout.setAlignment(Pos.CENTER);
+        layout.setSpacing(20);
+
+        Scene scene = new Scene(layout, 300, 150);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

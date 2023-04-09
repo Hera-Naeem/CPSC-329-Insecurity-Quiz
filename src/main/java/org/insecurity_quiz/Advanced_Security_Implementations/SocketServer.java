@@ -67,7 +67,7 @@ public class SocketServer {
     }
 
     /**
-     * Main method that starts the server.
+     * QuizApplication method that starts the server.
      *
      * @param args Command line arguments. Expects one argument - the port on which the server will listen for incoming connections.
      * @throws IOException If an I/O error occurs when creating the server socket.
