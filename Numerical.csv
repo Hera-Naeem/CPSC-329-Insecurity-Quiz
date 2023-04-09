@@ -1,0 +1,3 @@
+Type,Question ,Options ,Answer ,Question Hint,Answer Followup
+Numerical,What is the recommended minimum number of attempts before lockout according to the 2019 NIST guidelines?,,10,This is also the number of fingers on two hands.,Why do you suppose this is?
+Numerical,How many computers can be given a unique IP in the network 10.0.0.0/24?,,255,You loose one thanks to the router!,
