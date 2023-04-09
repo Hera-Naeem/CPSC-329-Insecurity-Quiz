@@ -35,19 +35,19 @@
                   <Insets left="10.0" />
                </VBox.margin>
             </Label>
-            <TextField prefHeight="92.0" prefWidth="513.0" promptText="Your Answer..." />
+            <TextField fx:id="answerField" prefHeight="92.0" prefWidth="513.0" promptText="Your Answer..." />
          </children>
       </VBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="89.0" prefWidth="376.0">
          <children>
             <Button fx:id="nextQuestionButton" mnemonicParsing="false" onAction="#nextQuesEvent" prefHeight="17.0" prefWidth="58.0" text="Next">
                <HBox.margin>
-                  <Insets left="150.0" />
+                  <Insets left="100.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="getHintButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getHintEvent" text="Get Hint">
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backBtnEvent" text="Back">
                <HBox.margin>
-                  <Insets left="50.0" />
+                  <Insets left="50.0" top="20.0" />
                </HBox.margin>
             </Button>
          </children>

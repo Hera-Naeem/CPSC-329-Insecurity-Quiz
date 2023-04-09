@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 public class CorrectAnsWindowController {
 
     @FXML
+    private Button backButton;
+    @FXML
     private Label quesIndexLabel;
 
     @FXML
@@ -92,5 +94,8 @@ public class CorrectAnsWindowController {
     }
 
     public void checkedFourEvent(ActionEvent actionEvent) {
+    }
+
+    public void backBtnEvent(ActionEvent actionEvent) {
     }
 }

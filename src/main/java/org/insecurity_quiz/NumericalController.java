@@ -13,8 +13,11 @@ import org.insecurity_quiz.Quiz_Data_Management.QuestionLoader;
 import java.io.IOException;
 
 public class NumericalController {
-        @FXML
-        private Label quesIndexLabel;
+
+    @FXML
+    private Button backButton;
+    @FXML
+    private Label quesIndexLabel;
 
         @FXML
         private Label quesLabel;
@@ -50,32 +53,36 @@ public class NumericalController {
             }
         }
 
+    @FXML
     private void showErrorDialog(String s) {
     }
 
     @FXML
-        public void nextQuesEvent(ActionEvent event) {
-            if (answerField.getText().isEmpty()) {
-                showErrorDialog("Please enter your answer!");
-                return;
+    public void nextQuesEvent(ActionEvent event) {
+        if (answerField.getText().isEmpty()) {
+            showErrorDialog("Please enter your answer!");
+            return;
+        }
+
+        try {
+            double userAnswer = Double.parseDouble(answerField.getText());
+            double correctAnswer = Double.parseDouble(currentQuestion.getAnswer());
+
+            if (userAnswer == correctAnswer) {
+                correct++;
+                showErrorDialog("Correct answer!");
+            } else {
+                wrong++;
+                showErrorDialog("Wrong answer!");
             }
 
-            try {
-                double userAnswer = Double.parseDouble(answerField.getText());
-                double correctAnswer = Double.parseDouble(currentQuestion.getAnswer());
 
-                if (userAnswer == correctAnswer) {
-                    correct++;
-                    showErrorDialog("Correct answer!");
-                } else {
-                    wrong++;
-                    showErrorDialog("Wrong answer!");
-                }
-
-
-            } catch (NumberFormatException e) {
-                showErrorDialog("Please enter a valid number!");
-            }
+        } catch (NumberFormatException e) {
+            showErrorDialog("Please enter a valid number!");
+        }
     }
 
+    @FXML
+    public void backBtnEvent(ActionEvent actionEvent) {
     }
+}

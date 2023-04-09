@@ -46,7 +46,7 @@ public class MultipleChoiceController {
 
     private void loadQuestions() {
         try {
-            questionLoader = new QuestionLoader("");
+            questionLoader = new QuestionLoader("MultipleChoiceFile.csv");
             currentQuestion = questionLoader.getRandomQuestions(1)[0];
 
             // Set the question text to the question label in the UI

@@ -11,9 +11,9 @@ public class MultipleChoiceQuestion extends Question {
     protected String[] options;
     public MultipleChoiceQuestion(String question, String optionsStr, String questionHint, String answer, String answerFollowup) {
         this.question = question;
-        this.questionHint = questionHint;
+        //this.questionHint = questionHint;
         this.answer = answer;
-        this.answerFollowup = answerFollowup;
+        //this.answerFollowup = answerFollowup;
         this.options = optionsStr.split(SEPARATOR);
     }
     public String[] getOptions() {

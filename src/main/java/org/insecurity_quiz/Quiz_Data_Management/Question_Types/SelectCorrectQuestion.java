@@ -17,9 +17,9 @@ public class SelectCorrectQuestion extends Question {
      */
     public SelectCorrectQuestion(String question, String options, String questionHint, String answer, String answerFollowup) {
         this.question = question;
-        this.questionHint = questionHint;
+        //this.questionHint = questionHint;
         this.answer = answer;
-        this.answerFollowup = answerFollowup;
+        //this.answerFollowup = answerFollowup;
         this.options = options.split(SEPARATOR);
     }
     public String[] getOptions() {
