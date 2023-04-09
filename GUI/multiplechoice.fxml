@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="380.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.HelloController">
+   <children>
+      <RadioButton layoutX="56.0" layoutY="194.0" mnemonicParsing="false" />
+      <RadioButton layoutX="56.0" layoutY="235.0" mnemonicParsing="false" />
+      <RadioButton layoutX="56.0" layoutY="278.0" mnemonicParsing="false" />
+      <RadioButton layoutX="56.0" layoutY="318.0" mnemonicParsing="false" />
+      <TextField layoutX="94.0" layoutY="190.0" prefHeight="24.0" prefWidth="230.0" />
+      <TextField layoutX="27.0" layoutY="28.0" prefHeight="145.0" prefWidth="325.0" />
+      <TextField layoutX="94.0" layoutY="231.0" prefHeight="25.0" prefWidth="230.0" />
+      <TextField layoutX="94.0" layoutY="274.0" prefHeight="25.0" prefWidth="230.0" />
+      <TextField layoutX="94.0" layoutY="314.0" prefHeight="25.0" prefWidth="230.0" />
+   </children>
+</AnchorPane>
