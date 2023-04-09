@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Insecurity_Quiz">
+    <output-path>$PROJECT_DIR$/out/artifacts/Insecurity_Quiz</output-path>
+    <root id="root">
+      <element id="archive" name="Insecurity_Quiz.jar">
+        <element id="module-output" name="Insecurity_Quiz" />
+      </element>
+    </root>
+  </artifact>
+</component>
