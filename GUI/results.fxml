@@ -10,9 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="646.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.QuizController">
-    <children>
-
-
-    </children>
+<VBox alignment="CENTER" prefHeight="646.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.ResultsController">
+   <children>
+      <Label prefHeight="21.0" prefWidth="958.0" text="Results!" />
+      <Label fx:id="scoreLabel" prefHeight="21.0" prefWidth="903.0" text="Your Score: " />
+      <Button fx:id="restartButton" mnemonicParsing="false"  onAction="#restartEvent" text="Restart" />
+   </children>
 </VBox>

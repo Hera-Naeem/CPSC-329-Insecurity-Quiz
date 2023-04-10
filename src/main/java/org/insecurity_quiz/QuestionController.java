@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -60,12 +59,12 @@ public class QuestionController {
     private RadioButton optionButton3;
     private RadioButton optionButton4;
 
-    private TextField answerField;
-
 
     //for numerical & short answer questions
     private String correctAnswer;
     private String userAnswer;
+
+    private boolean isCorrect;
     private String playerName;
 
     public void setPlayerName(String playerName) {
@@ -105,6 +104,7 @@ public class QuestionController {
         if(currentQuestion != null){
             this.questionType = currentQuestion.getQuestionType().toString();
             System.out.println("Current question type: " + questionType);
+            System.out.println(quesIndex);
 
             // Check the type of the current question
             if (currentQuestion.getQuestionType() == Question.QuestionTypes.MultipleChoice) {
@@ -128,17 +128,6 @@ public class QuestionController {
                 TextField answerField = new TextField();
                 questionBox.getChildren().clear();
                 questionBox.getChildren().add(answerField);
-
-            } else if (currentQuestion.getQuestionType() == Question.QuestionTypes.SelectCorrect) {
-                // Do something for select correct questions
-                CheckBox optionBox1 = new CheckBox(currentQuestion.getOptions()[0]);
-                CheckBox optionBox2 = new CheckBox(currentQuestion.getOptions()[1]);
-                CheckBox optionBox3 = new CheckBox(currentQuestion.getOptions()[2]);
-                CheckBox optionBox4 = new CheckBox(currentQuestion.getOptions()[3]);
-
-                //add checkboxes to question box
-                questionBox.getChildren().clear();
-                questionBox.getChildren().addAll(optionBox1, optionBox2, optionBox3, optionBox4);
 
             } else if (currentQuestion.getQuestionType() == Question.QuestionTypes.Numerical) {
                 // Do something for numerical questions
@@ -175,9 +164,7 @@ public class QuestionController {
         alert.showAndWait();
     }
 
-
-
-       public String getUserAnswer() {
+   public String getUserAnswer() {
         if (currentQuestion.getQuestionType() == Question.QuestionTypes.MultipleChoice) {
             if (optionButton1.isSelected()) {
                 return "A";
@@ -193,34 +180,60 @@ public class QuestionController {
         } else if (currentQuestion.getQuestionType() == Question.QuestionTypes.ShortAnswer) {
             TextField answerField = (TextField) questionBox.getChildren().get(0);
             return answerField.getText();
-        } else if (currentQuestion.getQuestionType() == Question.QuestionTypes.SelectCorrect) {
-            CheckBox optionBox1 = (CheckBox) questionBox.getChildren().get(0);
-            CheckBox optionBox2 = (CheckBox) questionBox.getChildren().get(1);
-            CheckBox optionBox3 = (CheckBox) questionBox.getChildren().get(2);
-            CheckBox optionBox4 = (CheckBox) questionBox.getChildren().get(3);
-            StringBuilder userAnswerBuilder = new StringBuilder();
-            if (optionBox1.isSelected()) {
-                userAnswerBuilder.append("A");
-            }
-            if (optionBox2.isSelected()) {
-                userAnswerBuilder.append("B");
-            }
-            if (optionBox3.isSelected()) {
-                userAnswerBuilder.append("C");
-            }
-            if (optionBox4.isSelected()) {
-                userAnswerBuilder.append("D");
-            }
-            String userAnswer = userAnswerBuilder.toString();
-            return userAnswer.isEmpty() ? null : userAnswer;
-        } else if (currentQuestion.getQuestionType() == Question.QuestionTypes.Numerical) {
+        }  else if (currentQuestion.getQuestionType() == Question.QuestionTypes.Numerical) {
             TextField answerField = (TextField) questionBox.getChildren().get(0);
             return answerField.getText();
         } else {
             return null; // unknown question type
         }
     }
+    @FXML
     public void submitEvent(ActionEvent actionEvent) {
+
+        answerValidation();
+
+        // Check if this is the last question
+        if (quesIndex == 19) {
+            // Change the text of the submit button to "Finish"
+            submitButton.setText("Finish");
+            submitButton.setOnAction(event -> {
+                try {
+                    // Get a reference to the button's stage
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                    // Load the FXML file for the new scene
+                    FXMLLoader loader = new FXMLLoader();
+                    VBox root = loader.load(new FileInputStream("GUI/results.fxml"));
+
+                    // Create a new scene with the loaded FXML file as the root
+                    Scene scene = new Scene(root);
+
+                    // Set the controller for the FXMLLoader instance
+                    ResultsController resultsController = loader.getController();
+                    resultsController.setPlayerName(playerName);
+                    resultsController.setScore(this.score);
+
+                    // Set the new scene to the application stage
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            });
+        } else {
+            // Change the text of the submit button to "Next"
+            submitButton.setText("Next");
+            submitButton.setOnAction(event -> {
+                try {
+                    loadNextQuestion(submitButton);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+    }
+
+    public void answerValidation(){
 
         // Get the selected answer based on the question type
         if (currentQuestion.getQuestionType() == Question.QuestionTypes.MultipleChoice) {
@@ -230,35 +243,27 @@ public class QuestionController {
                     .orElse(null);
             if (selectedButton != null) {
                 this.userAnswer = getUserAnswer();
+                isCorrect = userAnswer.equals(correctAnswer);
             }
         } else if (currentQuestion.getQuestionType() == Question.QuestionTypes.ShortAnswer) {
             TextField answerField = (TextField) questionBox.getChildren().get(0);
             userAnswer = answerField.getText();
-        } else if (currentQuestion.getQuestionType() == Question.QuestionTypes.SelectCorrect) {
-            List<CheckBox> selectedBoxes = questionBox.getChildren().stream()
-                    .filter(node -> node instanceof CheckBox && ((CheckBox) node).isSelected())
-                    .map(node -> (CheckBox) node)
-                    .collect(Collectors.toList());
-            userAnswer = "";
-            for (CheckBox box : selectedBoxes) {
-                this.userAnswer = getUserAnswer();
-            }
-            if (userAnswer.length() > 0) {
-                userAnswer = userAnswer.substring(0, userAnswer.length() - 1); // remove the last comma
-            }
+            isCorrect = true;
         } else if (currentQuestion.getQuestionType() == Question.QuestionTypes.Numerical) {
             TextField answerField = (TextField) questionBox.getChildren().get(0);
             this.userAnswer = getUserAnswer();
+            isCorrect = userAnswer.equals(correctAnswer);
         }
 
         // Check if an answer is selected
         if (userAnswer == null || userAnswer.isEmpty()) {
-            showErrorDialog("Please select an answer.");
+            showErrorDialog("Warning: you haven't answered the question");
             return;
         }
 
+
         // Check if the selected answer is correct
-        if (userAnswer.equalsIgnoreCase(correctAnswer)) {
+        if (isCorrect) {
             setCurrentScore(score + 1);
 
             // Show an alert to indicate that the answer is correct
@@ -267,35 +272,24 @@ public class QuestionController {
             alert.setHeaderText(null);
             alert.setContentText("Congratulations! Your answer is correct.");
             alert.showAndWait();
+        } else {
+            // Show an alert to indicate that the answer is incorrect
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Incorrect Answer");
+            alert.setHeaderText(null);
+            alert.setContentText("Better luck next time!");
+            alert.showAndWait();
         }
 
-        // Check if this is the last question
-        if (quesIndex == questions.length - 1) {
-            // Change the text of the submit button to "Finish"
-            submitButton.setText("Finish");
-            submitButton.setOnAction(event -> {
-                try {
-                    loadNextQuestion();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-        } else {
-            // Change the text of the submit button to "Next"
-            submitButton.setText("Next");
-            submitButton.setOnAction(event -> {
-                try {
-                    loadNextQuestion();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-        }
     }
 
-    private void loadNextQuestion() throws IOException {
+    private void loadNextQuestion(Button btn) throws IOException {
         // Increment the question index
         setQuestionIndex(quesIndex + 1);
+
+        // Reset the submit button's text and event handler
+        submitButton.setText("Submit");
+        submitButton.setOnAction(this::submitEvent);
 
         // Load the next question
         if (quesIndex < questions.length) {
