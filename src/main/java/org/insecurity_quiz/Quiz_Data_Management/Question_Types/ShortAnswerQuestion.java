@@ -9,6 +9,10 @@ public class ShortAnswerQuestion extends Question {
     public ShortAnswerQuestion(String question, String questionHint, String answer, String answerFollowup) {
         this.question = question;
         this.answer = answer;
+        this.questionHint = questionHint;
+        this.answerFollowup = answerFollowup;
+        this.questionType = QuestionTypes.ShortAnswer;
+
     }
     @Override
     public boolean validateAnswer(String answer) {

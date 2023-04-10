@@ -15,10 +15,12 @@ public abstract class Question {
     protected String questionHint;
     protected String answerFollowup;
     protected String[] options;
+    protected QuestionTypes questionType;
+
 
 
     public QuestionTypes getQuestionType() {
-        return QuestionTypes.Numerical;
+        return this.questionType;
     }
 
     public String getQuestion() {

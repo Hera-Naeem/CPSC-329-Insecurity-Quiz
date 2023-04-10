@@ -44,6 +44,9 @@ public class QuestionLoader {
         return questionData.rowCount();
     }
 
+
+
+
     //Current behavior: If numQuestions > numRows, return all the questions, not more.
     public Question[] getRandomQuestions(int numQuestions) {
         int numRows = getNumQuestions();

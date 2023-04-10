@@ -1,11 +1,3 @@
-/**
-
- The QuizController class is the controller for the intro.fxml file.
- It handles the events and actions for the welcome text and start quiz button.
- It also loads the questions.fxml file when the start quiz button is clicked.
- */
-
-
 package org.insecurity_quiz;
 
 import javafx.event.ActionEvent;
@@ -13,199 +5,110 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
 
-import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-public class QuizController{
 
-
-    //FXML values for intro scene
-
-    private Stage applicationStage;
+public class QuizController {
 
     @FXML
-    private Label welcomeText;
+    private Label welcomeMainText;
+    @FXML
+    private Label playerNameText;
+    @FXML
+    private Label playerNameLabel;
+
+    private String playerName;
+
+    @FXML
+    private VBox quizPage;
+
+    @FXML
+    private ProgressBar progressBar;
+
+    @FXML
+    private Label scoreLabel;
+
+    @FXML
+    private Label quizzesAttemptedLabel;
 
     @FXML
     private Button startQuizButton;
 
-    @FXML
-    private Label questionLabel;
+
+    private int numQuestionsAnswered = 0;
+    private int score = 0;
+    private int currentQuesIndex = 0;
+    private static final int TOTAL_QUESTIONS = 3;
+    private Stage applicationStage;
+
+    public void setPlayerNameText(String name) {
+        this.playerName = name;
+        playerNameText.setText("Hi! " + playerName + ". Are you ready to begin?");
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+        scoreLabel.setText(score + "/" + TOTAL_QUESTIONS);
+    }
+    public void setQuesIndex(int quesIndex) {
+        this.currentQuesIndex = quesIndex;
+        quizzesAttemptedLabel.setText(String.valueOf(currentQuesIndex));
+
+    }
 
     @FXML
-    private Button mcq;
+    private void initialize() {
+        progressBar.setProgress(0.0);
+    }
 
-    @FXML
-    private Button numerical;
-
-    @FXML
-    private Button shortAnswer;
-
-    @FXML
-    private Button correctAnswer;
-
-
-    //FXML values for cipherText window
-    @FXML
-    private Label decryptQue;
-
-    @FXML
-    private Label plainTextAns;
-
-    @FXML
-    private TextField plainTextField;
-
-    @FXML
-    private Button tryStartQuiz;
-
-    @FXML
-    private Label cipherText;
-
-    @FXML
-    private Label keyLabel;
-
-
-
-
-
-    public void initialize() {
-        // Initialize the UI elements and any necessary data here
+    private void showErrorDialog(String errorMessage) {
+        // TODO: implement error dialog
+        System.err.println(errorMessage);
     }
 
 
-    /**
-     * The startQuizEvent method is the event handler for the start quiz button.
-     * It loads the questions.fxml file using the FXMLLoader class and sets up
-     * the QuestionsController for the new scene.
-     *
-     * @param event the event triggered by the start quiz button.
-     * @throws IOException if there is an error loading the FXML file.
-     */
-
     @FXML
-    public void startQuizEvent(ActionEvent event) throws IOException {
+    private void startQuizEvent(ActionEvent event) throws IOException {
+        welcomeMainText.setText("The Insecurity Quiz");
+        playerNameText.setText("Player: " + playerName);
 
         // Get a reference to the button's stage
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         // Load the FXML file for the new scene
         FXMLLoader loader = new FXMLLoader();
-        VBox root = loader.load(new FileInputStream("GUI/cipher.fxml"));
+        VBox root = loader.load(new FileInputStream("GUI/questions.fxml"));
 
         // Create a new scene with the loaded FXML file as the root
         Scene scene = new Scene(root);
 
         // Set the controller for the FXMLLoader instance
-        QuizController selectionController = (QuizController) loader.getController();
-
+        QuestionController questionsController = loader.getController();
+        questionsController.setApplicationStage(applicationStage);
+        questionsController.setCurrentScore(score);
+        questionsController.setQuestionIndex(currentQuesIndex);
+        questionsController.setTotalQuestions(TOTAL_QUESTIONS);
 
         // Set the new scene to the application stage
         stage.setScene(scene);
+
     }
 
-    //for ciphertext
-    public void handlePlainTextButtonAction(ActionEvent actionEvent) {
-        String inputText = plainTextField.getText();
-        String expectedText = "Janet loves frogs";
-
-        Alert alert;
-
-        if (inputText.equals(expectedText)) {
-            alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setContentText("Congratulations! You got it!");
-        } else {
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("INCORRECT!");
+        /**
+         * The setApplicationStage method sets the application stage for this controller.
+         *
+         * @param applicationStage the stage for the application.
+         */
+        public void setApplicationStage (Stage applicationStage){
+            this.applicationStage = applicationStage;
         }
-        alert.show();
-    }
 
-
-    @FXML
-    public void correctCipher(ActionEvent event) throws IOException {
-
-        // Get a reference to the button's stage
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // Load the FXML file for the new scene
-        FXMLLoader loader = new FXMLLoader();
-        VBox root = loader.load(new FileInputStream("GUI/shortanswer.fxml"));
-
-        // Create a new scene with the loaded FXML file as the root
-        Scene scene = new Scene(root);
-
-        // Set the controller for the FXMLLoader instance
-        ShortAnswerController selectionController = loader.getController();
-
-
-        // Set the new scene to the application stage
-        stage.setScene(scene);
-
-    }
-
-/**
- *     @FXML
- *     public void numericalWindow(ActionEvent event) throws IOException {
- *         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
- *
- *
- *         FXMLLoader loader = new FXMLLoader();
- *         VBox root = loader.load(new FileInputStream("GUI/numerical.fxml"));
- *
- *         // Create a new scene with the loaded FXML file as the root
- *         Scene scene = new Scene(root);
- *
- *         // Set the controller for the FXMLLoader instance
- *         NumericalController selectionController = (NumericalController) loader.getController();
- *
- *
- *         // Set the new scene to the application stage
- *         stage.setScene(scene);
- *     }
- *
- *     @FXML
- *     public void shortAnsWindow(ActionEvent event) throws IOException {
- *         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
- *
- *
- *         FXMLLoader loader = new FXMLLoader();
- *         VBox root = loader.load(new FileInputStream("GUI/shortanswer.fxml"));
- *
- *         // Create a new scene with the loaded FXML file as the root
- *         Scene scene = new Scene(root);
- *
- *         // Set the controller for the FXMLLoader instance
- *         ShortAnswerController selectionController = (ShortAnswerController) loader.getController();
- *
- *
- *         // Set the new scene to the application stage
- *         stage.setScene(scene);
- *     }
- *
- *
- *
- *
- *
- * */
-
-    /**
-     * The setApplicationStage method sets the application stage for this controller.
-     *
-     * @param applicationStage the stage for the application.
-     */
-
-    public void setApplicationStage(Stage applicationStage) {
-        this.applicationStage = applicationStage;
-    }
 
 
 }
-
-

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -11,51 +12,37 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="280.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.QuizController">
+<VBox prefHeight="705.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.QuestionController">
    <children>
-      <Label alignment="CENTER" layoutX="6.0" layoutY="11.0" prefHeight="79.0" prefWidth="480.0" text="Pick one of these types of Questions!" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font size="23.0" />
-         </font>
+      <Label fx:id="titleLabel" prefHeight="98.0" prefWidth="862.0" text="The Insecurity Quiz" textAlignment="CENTER">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </Label>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
-         <right>
-            <Button fx:id="numerical" alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#numericalWindow" prefHeight="50.0" prefWidth="100.0" text="Numerical" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <BorderPane.margin>
-                  <Insets right="20.0" />
-               </BorderPane.margin>
-            </Button>
-         </right>
-         <bottom>
-            <Button fx:id="correctAnswer" mnemonicParsing="false" onAction="#CorrectAnsWindow" prefHeight="50.0" prefWidth="100.0" text="Select the correct one" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <BorderPane.margin>
-                  <Insets bottom="20.0" />
-               </BorderPane.margin>
-            </Button>
-         </bottom>
-         <top>
-            <Button fx:id="shortAnswer" mnemonicParsing="false" onAction="#shortAnsWindow" prefHeight="50.0" prefWidth="100.0" text="Short Answer" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-         </top>
-         <left>
-            <Button fx:id="mcq" alignment="TOP_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#multipleChoiceWindow" prefHeight="50.0" prefWidth="100.0" text="Multiple Choice" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <BorderPane.margin>
-                  <Insets left="20.0" />
-               </BorderPane.margin>
-            </Button>
-         </left>
-      </BorderPane>
+      <HBox prefHeight="173.0" prefWidth="862.0">
+         <children>
+            <Label fx:id="quesIndexLabel" prefHeight="159.0" prefWidth="114.0" text="Index" />
+            <Label fx:id="quesTextLabel" prefHeight="157.0" prefWidth="749.0" text="Question" />
+         </children>
+      </HBox>
+      <VBox fx:id="questionBox" prefHeight="331.0" prefWidth="862.0">
+      </VBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitEvent" prefHeight="80.0" prefWidth="216.0" text="Submit">
+               <HBox.margin>
+                  <Insets left="170.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#mainMenuEvent" prefHeight="80.0" prefWidth="193.0" text="Main Menu">
+               <HBox.margin>
+                  <Insets left="50.0" top="20.0" />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
+      <ProgressBar fx:id="progressTracker" prefHeight="23.0" prefWidth="909.0" progress="0.0">
+         <VBox.margin>
+            <Insets top="80.0" />
+         </VBox.margin>
+      </ProgressBar>
    </children>
 </VBox>

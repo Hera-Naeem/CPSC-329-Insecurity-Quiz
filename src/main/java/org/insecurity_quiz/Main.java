@@ -25,7 +25,7 @@ public class Main extends Application {
             VBox root = loader.load(new FileInputStream("GUI/intro.fxml"));
             Scene scene = new Scene(root, 600, 600);
 
-            QuizController selectionController = (QuizController) loader.getController();
+            IntroController selectionController = (IntroController) loader.getController();
             selectionController.setApplicationStage(primaryStage);
 
             primaryStage.setScene(scene);

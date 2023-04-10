@@ -14,6 +14,8 @@ public class MultipleChoiceQuestion extends Question {
         this.options = optionsStr.split("\\|");
         this.questionHint = questionHint;
         this.answerFollowup = answerFollowup;
+        this.questionType = QuestionTypes.MultipleChoice;
+
     }
     public String[] getOptions() {
         return this.options.clone();

@@ -12,6 +12,8 @@ public class NumericalQuestion extends Question {
         this.options = null;
         this.questionHint = questionHint;
         this.answerFollowup = answerFollowup;
+        this.questionType = QuestionTypes.Numerical;
+
     }
     @Override
     public boolean validateAnswer(String answer) {
