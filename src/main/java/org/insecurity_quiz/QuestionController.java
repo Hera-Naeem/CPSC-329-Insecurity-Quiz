@@ -8,14 +8,14 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.insecurity_quiz.Quiz_Data_Management.Question;
 import org.insecurity_quiz.Quiz_Data_Management.QuestionLoader;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class QuestionController {
     @FXML
@@ -82,8 +82,9 @@ public class QuestionController {
         this.totalQuestions = total;
     }
 
-
-
+    public void setProgressTracker(int track) {
+        progressTracker.setProgress((double) track / 20);
+    }
 
     @FXML
     public void initialize() throws IOException {
@@ -93,6 +94,7 @@ public class QuestionController {
         setCurrentScore(score);
         questionLoader = new QuestionLoader("QuizQuestions.csv");
         loadQuestions(quesIndex);
+        setProgressTracker(quesIndex+1);
     }
 
     private void loadQuestions(int quesIndex) throws IOException {
@@ -195,7 +197,7 @@ public class QuestionController {
         // Check if this is the last question
         if (quesIndex == 19) {
             // Change the text of the submit button to "Finish"
-            submitButton.setText("Finish");
+            //submitButton.setText("Finish");
             submitButton.setOnAction(event -> {
                 try {
                     // Get a reference to the button's stage
@@ -222,16 +224,16 @@ public class QuestionController {
             });
         } else {
             // Change the text of the submit button to "Next"
-            submitButton.setText("Next");
-            submitButton.setOnAction(event -> {
+            //submitButton.setText("Next");
+            //submitButton.setOnAction(event -> {
                 try {
-                    loadNextQuestion(submitButton);
+                    loadNextQuestion();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            });
-        }
+            };
     }
+
 
     public void answerValidation(){
 
@@ -248,8 +250,23 @@ public class QuestionController {
         } else if (currentQuestion.getQuestionType() == Question.QuestionTypes.ShortAnswer) {
             TextField answerField = (TextField) questionBox.getChildren().get(0);
             userAnswer = answerField.getText();
-            isCorrect = true;
-        } else if (currentQuestion.getQuestionType() == Question.QuestionTypes.Numerical) {
+            isCorrect = userAnswer.equals(correctAnswer);
+
+            if (!isCorrect) {
+                // Create a new Alert
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Incorrect Answer");
+                alert.setHeaderText("Did you know?");
+                String correctAnswer = currentQuestion.getAnswer();
+                alert.setContentText("Correct Answer:\n" + correctAnswer);
+                Text text = new Text(correctAnswer);
+                text.wrappingWidthProperty().bind(alert.getDialogPane().widthProperty().subtract(50));
+                alert.getDialogPane().setContent(text);
+                alert.showAndWait();
+            } else {
+                isCorrect = true;
+            }
+        }else if (currentQuestion.getQuestionType() == Question.QuestionTypes.Numerical) {
             TextField answerField = (TextField) questionBox.getChildren().get(0);
             this.userAnswer = getUserAnswer();
             isCorrect = userAnswer.equals(correctAnswer);
@@ -265,6 +282,13 @@ public class QuestionController {
         // Check if the selected answer is correct
         if (isCorrect) {
             setCurrentScore(score + 1);
+        }
+
+            /*
+
+             *
+
+
 
             // Show an alert to indicate that the answer is correct
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -281,15 +305,21 @@ public class QuestionController {
             alert.showAndWait();
         }
 
+             **/
+
+
+
+
     }
 
-    private void loadNextQuestion(Button btn) throws IOException {
+    private void loadNextQuestion() throws IOException {
         // Increment the question index
         setQuestionIndex(quesIndex + 1);
+        setProgressTracker(quesIndex+1);
 
         // Reset the submit button's text and event handler
-        submitButton.setText("Submit");
-        submitButton.setOnAction(this::submitEvent);
+        //submitButton.setText("Submit");
+        //submitButton.setOnAction(this::submitEvent);
 
         // Load the next question
         if (quesIndex < questions.length) {

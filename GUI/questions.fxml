@@ -27,22 +27,31 @@
       </HBox>
       <VBox fx:id="questionBox" prefHeight="331.0" prefWidth="862.0">
       </VBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <VBox prefHeight="350.0" prefWidth="875.0">
          <children>
-            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitEvent" prefHeight="80.0" prefWidth="216.0" text="Submit">
-               <HBox.margin>
-                  <Insets left="170.0" top="20.0" />
-               </HBox.margin></Button>
-            <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#mainMenuEvent" prefHeight="80.0" prefWidth="193.0" text="Main Menu">
-               <HBox.margin>
-                  <Insets left="50.0" top="20.0" />
-               </HBox.margin></Button>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitEvent" prefHeight="80.0" prefWidth="216.0" text="Next">
+                     <HBox.margin>
+                        <Insets left="170.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#mainMenuEvent" prefHeight="80.0" prefWidth="193.0" text="Main Menu">
+                     <HBox.margin>
+                        <Insets left="50.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <ProgressBar fx:id="progressTracker" prefHeight="75.0" prefWidth="932.0" progress="0.0">
+               <VBox.margin>
+                  <Insets top="80.0" />
+               </VBox.margin>
+            </ProgressBar>
          </children>
-      </HBox>
-      <ProgressBar fx:id="progressTracker" prefHeight="23.0" prefWidth="909.0" progress="0.0">
-         <VBox.margin>
-            <Insets top="80.0" />
-         </VBox.margin>
-      </ProgressBar>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </VBox>
    </children>
 </VBox>

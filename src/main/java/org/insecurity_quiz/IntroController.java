@@ -108,22 +108,21 @@ public class IntroController {
         this.cipherAnswer = answer;
     }
 
-    public void validateCipher(String answer) {
+    public void validateCipher(String answer, Button button) {
         String expectedInput = "Janet loves Frogs";
 
         boolean checkAnswer = answer.equals(expectedInput);
         System.out.println(checkAnswer);
 
         if(answer.isEmpty()) {
-            errorMessage.setText("Please write your answer.");
+            errorMessage.setText("You must crack the code to continue :(.");
         } else if (checkAnswer) {
-            errorMessage.setText("Congratulations! " + playerName + " Let's move on to the Real Quiz");
+            errorMessage.setText("Congratulations! Let's move on to the real quiz...");
 
-            // Create a new button
-            Button startButton = new Button("GO!");
 
-            // Add an action event to the button
-            startButton.setOnAction(event -> {
+        // Add an action event to the button
+            button.setText("GO!");
+            button.setOnAction(event -> {
                 try {
                     // Get a reference to the button's stage
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -139,7 +138,7 @@ public class IntroController {
                     QuizController quizController = loader.getController();
                     quizController.setPlayerName(playerName);
                     quizController.setWelcomeMainText("Welcome to the Insecurity Quiz!");
-                    quizController.setPlayerNameText("Hey, " + playerName + "Are you ready to begin?");
+                    quizController.setPlayerNameText("Hey, " + playerName + "! Are you ready to begin?");
 
                     // Set the new scene to the application stage
                     stage.setScene(scene);
@@ -148,8 +147,6 @@ public class IntroController {
                 }
             });
 
-            // Add the button to the layout
-            cipherVBox.getChildren().add(startButton);
         } else {
             errorMessage.setText("INCORRECT! Try Again");
         }
@@ -164,7 +161,7 @@ public class IntroController {
     @FXML
     private void submitButtonEvent(ActionEvent event) throws Exception {
         setCipherAnswer(plainTextField.getText());
-        validateCipher(cipherAnswer);
+        validateCipher(cipherAnswer, submitButton);
     }
 
 
