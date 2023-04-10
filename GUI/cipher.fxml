@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="cipherVBox" prefHeight="307.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.IntroController">
+<VBox fx:id="cipherVBox" alignment="CENTER" prefHeight="646.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.IntroController">
     <children>
         <Label fx:id="decryptQue" layoutX="122.0" layoutY="14.0" prefHeight="38.0" prefWidth="212.0" text="Can you decrypt this?">
             <font>

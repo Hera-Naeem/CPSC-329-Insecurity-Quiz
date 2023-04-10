@@ -29,15 +29,6 @@ public class QuizController {
     private VBox quizPage;
 
     @FXML
-    private ProgressBar progressBar;
-
-    @FXML
-    private Label scoreLabel;
-
-    @FXML
-    private Label quizzesAttemptedLabel;
-
-    @FXML
     private Button startQuizButton;
 
 
@@ -47,24 +38,30 @@ public class QuizController {
     private static final int TOTAL_QUESTIONS = 3;
     private Stage applicationStage;
 
-    public void setPlayerNameText(String name) {
+    public void setPlayerName(String name) {
         this.playerName = name;
-        playerNameText.setText("Hi! " + playerName + ". Are you ready to begin?");
     }
 
+    public void setPlayerNameText(String playerText){
+        playerNameText.setText(playerText);
+    }
+
+    public void setWelcomeMainText(String welcomeText){
+        welcomeMainText.setText(welcomeText);
+    }
     public void setScore(int score) {
         this.score = score;
-        scoreLabel.setText(score + "/" + TOTAL_QUESTIONS);
+        //scoreLabel.setText(score + "/" + TOTAL_QUESTIONS);
     }
     public void setQuesIndex(int quesIndex) {
         this.currentQuesIndex = quesIndex;
-        quizzesAttemptedLabel.setText(String.valueOf(currentQuesIndex));
+        //quizzesAttemptedLabel.setText(String.valueOf(currentQuesIndex));
 
     }
 
     @FXML
     private void initialize() {
-        progressBar.setProgress(0.0);
+
     }
 
     private void showErrorDialog(String errorMessage) {
@@ -75,9 +72,6 @@ public class QuizController {
 
     @FXML
     private void startQuizEvent(ActionEvent event) throws IOException {
-        welcomeMainText.setText("The Insecurity Quiz");
-        playerNameText.setText("Player: " + playerName);
-
         // Get a reference to the button's stage
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -92,6 +86,7 @@ public class QuizController {
         QuestionController questionsController = loader.getController();
         questionsController.setApplicationStage(applicationStage);
         questionsController.setCurrentScore(score);
+        questionsController.setPlayerName(playerName);
         questionsController.setQuestionIndex(currentQuesIndex);
         questionsController.setTotalQuestions(TOTAL_QUESTIONS);
 

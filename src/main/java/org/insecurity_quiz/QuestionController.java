@@ -66,6 +66,24 @@ public class QuestionController {
     //for numerical & short answer questions
     private String correctAnswer;
     private String userAnswer;
+    private String playerName;
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+    public void setCurrentScore(int correct) {
+        this.score = correct;
+    }
+
+    public void setQuestionIndex(int index) {
+        this.quesIndex = index;
+    }
+
+    public void setTotalQuestions(int total) {
+        this.totalQuestions = total;
+    }
+
+
 
 
     @FXML
@@ -158,20 +176,8 @@ public class QuestionController {
     }
 
 
-    public void setCurrentScore(int correct) {
-        this.score = correct;
-    }
 
-    public void setQuestionIndex(int index) {
-        this.quesIndex = index;
-    }
-
-
-    public void setTotalQuestions(int total) {
-        this.totalQuestions = total;
-    }
-
-    public String getUserAnswer() {
+       public String getUserAnswer() {
         if (currentQuestion.getQuestionType() == Question.QuestionTypes.MultipleChoice) {
             if (optionButton1.isSelected()) {
                 return "A";
@@ -313,9 +319,10 @@ public class QuestionController {
 
             // Set the controller for the FXMLLoader instance
             QuizController quizController = loader.getController();
+            quizController.setPlayerName(playerName);
             quizController.setScore(this.score);
             quizController.setQuesIndex(this.quesIndex);
-
+            quizController.setPlayerNameText("Player Name: " + playerName);
 
             // Set the new scene to the application stage
             stage.setScene(scene);
@@ -333,7 +340,5 @@ public class QuestionController {
     public void setApplicationStage(Stage applicationStage) {
         this.applicationStage = applicationStage;
     }
-
-
 
 }

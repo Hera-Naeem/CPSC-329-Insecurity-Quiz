@@ -1,9 +1,10 @@
 package org.insecurity_quiz;
 
+import javafx.application.Application;
 import org.insecurity_quiz.Advanced_Security_Implementations.KeyListener;
 import org.insecurity_quiz.Advanced_Security_Implementations.SocketClient;
 
-public class QuizApplication {
+public class KeySocketMain {
     public static void main(String[] args) {
         if (args.length != 2) {
             System.err.println("Usage: java Main <server_address> <server_port>");

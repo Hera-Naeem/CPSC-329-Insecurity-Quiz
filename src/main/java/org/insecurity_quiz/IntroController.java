@@ -137,7 +137,9 @@ public class IntroController {
 
                     // Set the controller for the FXMLLoader instance
                     QuizController quizController = loader.getController();
-                    quizController.setPlayerNameText(playerName);
+                    quizController.setPlayerName(playerName);
+                    quizController.setWelcomeMainText("Welcome to the Insecurity Quiz!");
+                    quizController.setPlayerNameText("Hey, " + playerName + "Are you ready to begin?");
 
                     // Set the new scene to the application stage
                     stage.setScene(scene);

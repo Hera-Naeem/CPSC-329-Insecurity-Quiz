@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="443.0" prefWidth="512.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.QuizController">
+<VBox alignment="CENTER" prefHeight="646.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.QuizController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -23,17 +23,11 @@
                 <Font name="Bodoni MT Poster Compressed" size="35.0" />
             </font>
         </Label>
-        <Label fx:id="playerNameText" text="Hi, Player Name! Are you ready to Begin?" />
-        <Label fx:id="playerNameLabel" text=""/>
-        <ProgressBar fx:id="progressBar" prefWidth="300.0" progress="0.0" />
-        <HBox>
-            <Label text="Score: " />
-            <Label fx:id="scoreLabel" text="0" />
-        </HBox>
-        <HBox>
-            <Label text="Quizzes Attempted: " />
-            <Label fx:id="quizzesAttemptedLabel" text="0" />
-        </HBox>
+        <Label fx:id="playerNameText" text="Hi, Player Name! Are you ready to Begin?">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin></Label>
+        <Label fx:id="playerNameLabel" prefHeight="21.0" prefWidth="370.0" text="" />
         <Button fx:id="startQuizButton" mnemonicParsing="false" onAction="#startQuizEvent" prefHeight="45.0" prefWidth="96.0" text="START" textAlignment="CENTER" wrapText="true">
             <font>
                 <Font name="Calibri" size="12.0" />
