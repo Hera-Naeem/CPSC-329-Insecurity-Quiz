@@ -12,8 +12,16 @@
 
 <VBox alignment="CENTER" prefHeight="646.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.ResultsController">
    <children>
-      <Label prefHeight="21.0" prefWidth="958.0" text="Results!" />
-      <Label fx:id="scoreLabel" prefHeight="21.0" prefWidth="903.0" text="Your Score: " />
-      <Button fx:id="restartButton" mnemonicParsing="false"  onAction="#restartEvent" text="Restart" />
+      <Label prefHeight="21.0" prefWidth="958.0" text="One last thing..." />
+      <Label prefHeight="21.0" prefWidth="958.0" text="Provide the following information to access your score." />
+      <HBox alignment="CENTER" spacing="10.0">
+         <Label prefHeight="21.0" prefWidth="150.0" text="D2L Username:" />
+         <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="200.0" />
+      </HBox>
+      <HBox alignment="CENTER" spacing="10.0">
+         <Label prefHeight="21.0" prefWidth="150.0" text="Password:" />
+         <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="200.0" />
+      </HBox>
+      <Button fx:id="enterButton" mnemonicParsing="false" onAction="#enterEvent" text="Enter" />
    </children>
 </VBox>

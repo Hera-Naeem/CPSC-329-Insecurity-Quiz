@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -18,6 +19,9 @@ import java.io.IOException;
 
 
 public class QuestionController {
+    @FXML
+    public VBox quizBox;
+
     @FXML
     private Label titleLabel;
     @FXML
@@ -34,7 +38,6 @@ public class QuestionController {
     private ProgressBar progressTracker;
     private Stage applicationStage;
     private int score;
-    private int counter = -1;
 
     private int totalQuestions;
 
@@ -195,32 +198,48 @@ public class QuestionController {
         answerValidation();
 
         // Check if this is the last question
+
+        quesIndex = 19;
         if (quesIndex == 19) {
             // Change the text of the submit button to "Finish"
             //submitButton.setText("Finish");
             submitButton.setOnAction(event -> {
-                try {
-                    // Get a reference to the button's stage
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                // Remove all children of quizBox other than the title
+                quizBox.getChildren().removeIf(node -> !(node instanceof Label));
 
-                    // Load the FXML file for the new scene
-                    FXMLLoader loader = new FXMLLoader();
-                    VBox root = loader.load(new FileInputStream("GUI/results.fxml"));
+                // Create a label with the text "Great job! You've answered all the questions..."
+                Label congratulationsLabel = new Label("Great job! You've answered all the questions!");
+                congratulationsLabel.setAlignment(Pos.CENTER);
+                congratulationsLabel.setStyle("-fx-font-size: 20px;");
 
-                    // Create a new scene with the loaded FXML file as the root
-                    Scene scene = new Scene(root);
+                // Create a button with the label "View Results"
+                Button viewResultsButton = new Button("View Results");
+                viewResultsButton.setOnAction(event1 -> {
+                    try {
+                        // Get a reference to the button's stage
+                        Stage stage = (Stage) ((Node) event1.getSource()).getScene().getWindow();
 
-                    // Set the controller for the FXMLLoader instance
-                    ResultsController resultsController = loader.getController();
-                    resultsController.setPlayerName(playerName);
-                    resultsController.setScore(this.score);
+                        // Load the FXML file for the new scene
+                        FXMLLoader loader = new FXMLLoader();
+                        VBox root = loader.load(new FileInputStream("GUI/results.fxml"));
 
-                    // Set the new scene to the application stage
-                    stage.setScene(scene);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                        // Create a new scene with the loaded FXML file as the root
+                        Scene scene = new Scene(root);
 
+                        // Set the controller for the FXMLLoader instance
+                        ResultsController resultsController = loader.getController();
+                        resultsController.setPlayerName(playerName);
+                        resultsController.setScore(this.score);
+
+                        // Set the new scene to the application stage
+                        stage.setScene(scene);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+                // Add the label and button to the quizBox
+                quizBox.getChildren().addAll(congratulationsLabel, viewResultsButton);
             });
         } else {
             // Change the text of the submit button to "Next"
@@ -306,9 +325,6 @@ public class QuestionController {
         }
 
              **/
-
-
-
 
     }
 
