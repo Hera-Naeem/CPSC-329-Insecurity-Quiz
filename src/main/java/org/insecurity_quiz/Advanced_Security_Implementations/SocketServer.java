@@ -11,7 +11,7 @@ import java.util.function.Function;
 /**
  * A class for a simple socket server that listens for incoming connections and executes a function on the received string.
  */
-public class SocketServer {
+public class SocketServer implements Runnable {
     private int serverPort;
 
     private Function<String, Boolean> execute;
@@ -32,11 +32,28 @@ public class SocketServer {
      *
      * @throws IOException If an I/O error occurs when creating the server socket.
      */
-    public void startServer() throws IOException {
-        ServerSocket serverSocket = new ServerSocket(serverPort);
+    public void startServer() {
+        // Create a new thread and start it
+        Thread thread = new Thread(this);
+        thread.start();
+    }
+
+    @Override
+    public void run() {
+        ServerSocket serverSocket = null;
+        try {
+            serverSocket = new ServerSocket(serverPort);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         while (true) {
-            Socket socket = serverSocket.accept();
-            handleSocket(socket);
+            Socket socket = null;
+            try {
+                socket = serverSocket.accept();
+                handleSocket(socket);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

