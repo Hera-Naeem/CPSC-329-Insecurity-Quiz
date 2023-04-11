@@ -23,7 +23,7 @@ public class Main extends Application {
         try{
             FXMLLoader loader = new FXMLLoader();
             VBox root = loader.load(new FileInputStream("GUI/intro.fxml"));
-            Scene scene = new Scene(root, 600, 600);
+            Scene scene = new Scene(root, 900, 700);
 
             IntroController selectionController = (IntroController) loader.getController();
             selectionController.setApplicationStage(primaryStage);

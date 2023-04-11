@@ -17,6 +17,9 @@ import java.util.Optional;
 public class IntroController {
 
     @FXML
+    private VBox introVBox;
+
+    @FXML
     private VBox cipherVBox;
     @FXML
     private Label errorMessage;

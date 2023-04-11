@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -12,27 +13,64 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="646.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.IntroController">
+<VBox fx:id="introVBox" alignment="CENTER" prefHeight="700.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.IntroController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <children>
-        <Label text="The Insecurity Quiz">
+        <Label alignment="CENTER" prefHeight="158.0" prefWidth="730.0" text="THE INSECURITY QUIZ">
             <font>
-                <Font name="Bodoni MT Poster Compressed" size="45.0" />
+                <Font name="ROGFONTS-REGULAR" size="46.0" />
             </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#6e3d6d" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
         </Label>
 
-        <Label fx:id="welcomeText" prefHeight="43.0" prefWidth="430.0" text="By: John Ngo, Deliya Wani, Farooz Shafin, Hera Naeem" textAlignment="CENTER" />
-
-        <Label text="Please enter your name:" />
-
-        <TextField fx:id="nameField" promptText="Enter your name" />
-
-        <Button fx:id="startQuizButton" mnemonicParsing="false" onAction="#startQuizEvent" prefHeight="45.0" prefWidth="96.0" text="PLAY" textAlignment="CENTER" wrapText="true">
+        <Label fx:id="welcomeText" alignment="CENTER" prefHeight="62.0" prefWidth="564.0" text="BY: JOHN NGO, DELIYA WANI, FAROOZ SHAFIN, HERA NAEEM" textAlignment="CENTER">
             <font>
-                <Font name="Calibri" size="12.0" />
+                <Font name="SEGOE UI SEMIBOLD" size="19.0" />
             </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#354c86" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></Label>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <children>
+
+                <Label alignment="CENTER" prefHeight="71.0" prefWidth="141.0" text="PLAYER NAME:" textAlignment="CENTER" textFill="#9bb5eb">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="18.0" />
+                    </font>
+                </Label>
+
+                <TextField fx:id="nameField" prefHeight="70.0" prefWidth="418.0" promptText="Please write your name here...">
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+               <font>
+                  <Font name="Segoe UI" size="24.0" />
+               </font>
+                </TextField>
+            </children>
+        </HBox>
+
+        <Button fx:id="startQuizButton" mnemonicParsing="false" onAction="#startQuizEvent" prefHeight="93.0" prefWidth="178.0" text="PLAY" textAlignment="CENTER" textFill="#1225c7a8" wrapText="true">
+            <font>
+                <Font name="SEGOE UI BLACK" size="25.0" />
+            </font>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
         </Button>
     </children>
 </VBox>

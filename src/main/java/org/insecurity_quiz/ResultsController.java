@@ -12,6 +12,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -22,7 +24,7 @@ public class ResultsController {
 
     @FXML
     private Button enterButton;
-    
+
     @FXML
     private TextField usernameField;
 
@@ -67,37 +69,47 @@ public class ResultsController {
         vbox.getChildren().clear();
 
         // Add subheading for results
-        Label resultsSubheading = new Label("Your Results");
-        resultsSubheading.setStyle("-fx-font-size: 18pt; -fx-padding: 20 0 10 0;");
+        Label resultsSubheading = new Label("YOUR RESULTS");
+        resultsSubheading.setFont(Font.font("ROGFonts-Regular", 38));
+        resultsSubheading.setStyle("-fx-padding: 20 0 10 0; -fx-text-fill: linear-gradient(#0249e5, white);");
         vbox.getChildren().add(resultsSubheading);
 
         // Add label to display final score
         Label scoreLabel = new Label("Your final score is: " + score + "/20");
-        scoreLabel.setStyle("-fx-font-size: 14pt; -fx-padding: 0 0 10 0;");
+        scoreLabel.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        scoreLabel.setStyle("-fx-padding: 0 0 10 0; -fx-text-fill: #2182b2;");
         vbox.getChildren().add(scoreLabel);
 
         // Add "Gotcha!" label
         Label gotchaLabel = new Label("Gotcha!");
-        gotchaLabel.setStyle("-fx-font-size: 14pt; -fx-text-fill: red; -fx-padding: 10 0 0 0;");
+        gotchaLabel.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        gotchaLabel.setStyle("-fx-text-fill: #6e3d6d; -fx-padding: 10 0 0 0;");
         vbox.getChildren().add(gotchaLabel);
 
         // Add "If you gave your password" label
-        Label passwordLabel = new Label("If you gave your password, restart the quiz to learn why you shouldn't.");
-        passwordLabel.setStyle("-fx-font-size: 12pt; -fx-padding: 10 0 0 0;");
+        Label passwordLabel = new Label("If you gave your real login info, restart the quiz to learn why you shouldn't.");
+        passwordLabel.setFont(Font.font("Segoe UI", 12));
+        passwordLabel.setStyle("-fx-padding: 10 0 0 0; -fx-text-fill: #2182b2;");
         vbox.getChildren().add(passwordLabel);
 
         // Add "But being a student of CPSC 329" label
         Label cpscLabel = new Label("But being a student of CPSC 329, you probably know better!");
-        cpscLabel.setStyle("-fx-font-size: 12pt; -fx-padding: 10 0 0 0;");
+        cpscLabel.setFont(Font.font("Segoe UI", 12));
+        cpscLabel.setStyle("-fx-padding: 10 0 0 0; -fx-text-fill: #2182b2;");
         vbox.getChildren().add(cpscLabel);
 
         // Add restart button
-        Button restartButton = new Button("Restart Quiz");
+        Button restartButton = new Button("RESTART QUIZ");
+        restartButton.setFont(Font.font("Segoe UI Black", FontWeight.BOLD, 25));
+        restartButton.setTextFill(javafx.scene.paint.Color.WHITE);
+        restartButton.setStyle("-fx-background-color: #6e3d6d; -fx-padding: 10px; -fx-background-radius: 5em;");
         restartButton.setOnAction(this::restartEvent);
         HBox hbox = new HBox(restartButton);
         hbox.setStyle("-fx-alignment: center; -fx-padding: 20 0 0 0;");
         vbox.getChildren().add(hbox);
     }
+
+
     /**
      * Restarts the quiz.
      *

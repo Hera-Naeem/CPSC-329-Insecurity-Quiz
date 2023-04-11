@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -10,18 +11,101 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="646.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.ResultsController">
+<VBox fx:id="resultsVBox" alignment="CENTER" prefHeight="431.0" prefWidth="580.0" spacing="20.0" style="-fx-background-color: black" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.ResultsController">
    <children>
-      <Label prefHeight="21.0" prefWidth="958.0" text="One last thing..." />
-      <Label prefHeight="21.0" prefWidth="958.0" text="Provide the following information to access your score." />
+      <Label alignment="CENTER" prefHeight="66.0" prefWidth="580.0" text="THE INSECURITY QUIZ" textAlignment="CENTER">
+         <font>
+            <Font name="ROGFonts-Regular" size="36.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#6e3d6d" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label alignment="CENTER" prefHeight="39.0" prefWidth="530.0" text="One last thing..." textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Segoe UI Bold Italic" size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#6b2c6f" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></Label>
+      <Label alignment="CENTER" prefHeight="32.0" prefWidth="530.0" text="Provide the following information to access your score:" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semibold Italic" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#5045a4" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></Label>
       <HBox alignment="CENTER" spacing="10.0">
-         <Label prefHeight="21.0" prefWidth="150.0" text="D2L Username:" />
-         <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="200.0" />
+         <children>
+            <Label prefHeight="21.0" prefWidth="150.0" text="D2L Username:">
+               <font>
+                  <Font name="Segoe UI Light" size="18.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#a4a5cd" />
+                        <Stop color="#efefef" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="200.0" promptText="Your D2L username" />
+         </children>
       </HBox>
       <HBox alignment="CENTER" spacing="10.0">
-         <Label prefHeight="21.0" prefWidth="150.0" text="Password:" />
-         <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="200.0" />
+         <children>
+            <Label prefHeight="21.0" prefWidth="150.0" text="D2L Password:">
+               <font>
+                  <Font name="Segoe UI Light" size="18.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#a4a5cd" />
+                        <Stop color="#efefef" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="200.0" promptText="Your D2L password" />
+         </children>
       </HBox>
-      <Button fx:id="enterButton" mnemonicParsing="false" onAction="#enterEvent" text="Enter" />
+      <Button fx:id="enterButton" alignment="CENTER" mnemonicParsing="false" onAction="#enterEvent" prefHeight="60.0" prefWidth="152.0" text="ENTER" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="30.0" top="30.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Segoe UI Black" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.941747572815534" endY="0.09708737864077666" startX="0.8203883495145631" startY="1.0">
+               <stops>
+                  <Stop color="#332e3b" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></Button>
    </children>
 </VBox>

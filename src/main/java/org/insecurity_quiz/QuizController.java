@@ -17,6 +17,8 @@ import java.io.IOException;
 public class QuizController {
 
     @FXML
+    private VBox mainPageVBox;
+    @FXML
     private Label welcomeMainText;
     @FXML
     private Label playerNameText;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -13,24 +14,42 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="646.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.QuizController">
-    <padding>
+<VBox fx:id="mainPageVBox" alignment="CENTER" prefHeight="590.0" prefWidth="771.0" spacing="20.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.QuizController">    <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <children>
-        <Label fx:id="welcomeMainText" text="Welcome to the Insecurity Quiz!">
+        <Label fx:id="welcomeMainText" alignment="CENTER" prefHeight="135.0" prefWidth="677.0" text="Welcome to the Insecurity Quiz!" VBox.vgrow="ALWAYS">
             <font>
-                <Font name="Bodoni MT Poster Compressed" size="35.0" />
+                <Font name="ROGFonts-Regular" size="26.0" />
             </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#3f99a1" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
         </Label>
         <Label fx:id="playerNameText" text="Hi, Player Name! Are you ready to Begin?">
          <VBox.margin>
             <Insets top="20.0" />
-         </VBox.margin></Label>
+         </VBox.margin>
+         <font>
+            <Font name="Segoe UI Semibold Italic" size="21.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#4463a8" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></Label>
         <Label fx:id="playerNameLabel" prefHeight="21.0" prefWidth="370.0" text="" />
-        <Button fx:id="startQuizButton" mnemonicParsing="false" onAction="#startQuizEvent" prefHeight="45.0" prefWidth="96.0" text="START" textAlignment="CENTER" wrapText="true">
+        <Button fx:id="startQuizButton" mnemonicParsing="false" onAction="#startQuizEvent" prefHeight="93.0" prefWidth="178.0" text="START" textAlignment="CENTER" textFill="#1225c7a8" wrapText="true">
             <font>
-                <Font name="Calibri" size="12.0" />
+                <Font name="SEGOE UI BLACK" size="25.0" />
             </font>
         </Button>
     </children>

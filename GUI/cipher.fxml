@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -9,34 +10,98 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
 
-<VBox fx:id="cipherVBox" alignment="CENTER" prefHeight="646.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.IntroController">
+<VBox fx:id="cipherVBox" alignment="CENTER" prefHeight="755.0" prefWidth="933.0" spacing="20.0" style="-fx-background-color: black" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.insecurity_quiz.IntroController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
     <children>
-        <Label fx:id="decryptQue" layoutX="122.0" layoutY="14.0" prefHeight="38.0" prefWidth="212.0" text="Can you decrypt this?">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Label>
-        <TextField fx:id="plainTextField" layoutX="170.0" layoutY="138.0" prefHeight="38.0" prefWidth="177.0" />
-        <Label fx:id="cipherText" layoutX="96.0" layoutY="80.0" text="VMZQFXAHQERDASE" textFill="#191717">
-            <font>
-                <Font size="25.0" />
-            </font>
-        </Label>
-        <Label fx:id="keyLabel" layoutX="180.0" layoutY="52.0" text="KEY = 12" textFill="#b53131">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
-
-        <Label fx:id="errorMessage" layoutX="180.0" layoutY="52.0" text="Think you figured it out? Hit submit!" >
+          <Label fx:id="decryptQue" alignment="CENTER" prefHeight="120.0" prefWidth="504.0" text="UNLOCK THE QUIZ">
+              <font>
+                  <Font name="ROGFonts-Regular" size="38.0" />
+              </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0249e5" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+          </Label>
+        <VBox alignment="CENTER" prefHeight="348.0" prefWidth="835.0">
+            <children>
+            <Label alignment="CENTER" prefHeight="106.0" prefWidth="458.0" text="CAN YOU DECRYPT THIS?">
+               <font>
+                  <Font name="Segoe UI Italic" size="33.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5340909090909092" centerY="0.5145631067961165" focusAngle="-170.54" focusDistance="0.12195121951219523" radius="0.20731707317073172">
+                     <stops>
+                        <Stop color="#2182b2" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+                <Label fx:id="cipherText" alignment="CENTER" prefHeight="77.0" prefWidth="471.0" text="VMZQFXAHQERDASE">
+                    <font>
+                        <Font name="Serif Bold" size="32.0" />
+                    </font>
+               <textFill>
+                  <RadialGradient centerX="0.5340909090909092" centerY="0.5145631067961165" cycleMethod="REFLECT" focusAngle="-170.54" focusDistance="0.12195121951219523" radius="0.20731707317073172">
+                     <stops>
+                        <Stop color="#761fa8" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+                </Label>
+              <Label fx:id="keyLabel" alignment="CENTER" text="KEY = 12" textFill="#bc0c06">
+                  <font>
+                      <Font name="Segoe UI Black Italic" size="23.0" />
+                  </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+              </Label>
+            <HBox alignment="CENTER" prefHeight="155.0" prefWidth="777.0">
+               <children>
+                      <TextField fx:id="plainTextField" alignment="CENTER" prefHeight="130.0" prefWidth="422.0" promptText="WRITE YOUR ANSWERE HERE">
+                     <font>
+                        <Font name="Segoe UI" size="19.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+            </HBox>
+            </children>
+        </VBox>
+        <Label fx:id="errorMessage" alignment="CENTER" text="DID YOU CRACK THE CODE? HIT SUBMIT!" textAlignment="CENTER" textFill="#f2ecec">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
-
-        <Button fx:id="submitButton" layoutX="181.0" layoutY="195.0" mnemonicParsing="false" onAction="#submitButtonEvent" text="Submit" />
-
-
+        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonEvent" prefHeight="76.0" prefWidth="154.0" text="SUBMIT" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Segoe UI Black" size="25.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#2182b2" />
+                  <Stop color="#38031d" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></Button>
     </children>
 </VBox>

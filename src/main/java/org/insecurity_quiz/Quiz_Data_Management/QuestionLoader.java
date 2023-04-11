@@ -11,8 +11,7 @@ import tech.tablesaw.io.csv.CsvReadOptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -43,9 +42,6 @@ public class QuestionLoader {
     public int getNumQuestions() {
         return questionData.rowCount();
     }
-
-
-
 
     //Current behavior: If numQuestions > numRows, return all the questions, not more.
     public Question[] getRandomQuestions(int numQuestions) {
@@ -96,12 +92,15 @@ public class QuestionLoader {
     //Given a number of rows, returns an array containing the numbers from zero to that number, shuffled.
     //Todo: Refactor to a utility class?
     protected int[] randomRowIndexes(int numRows) {
+        List<Integer> numArrayList = new ArrayList<Integer>();
+        for (int i = 0; i < numRows; i++) {
+            numArrayList.add(i);
+        }
+        Collections.shuffle(numArrayList);
         int[] numArray = new int[numRows];
         for (int i = 0; i < numArray.length; i++) {
-            numArray[i] = i;
+            numArray[i] = numArrayList.get(i);
         }
-        Collections.shuffle(Arrays.asList(numArray));
-
         return numArray;
     }
 }

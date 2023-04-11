@@ -17,7 +17,14 @@ public class NumericalQuestion extends Question {
     }
     @Override
     public boolean validateAnswer(String answer) {
-        return Double.parseDouble(answer) == Double.parseDouble(this.answer);
+        try {
+            double parsedAnswer = Double.parseDouble(answer);
+            // set the parsed answer as the correct answer
+            this.answer = Double.toString(parsedAnswer);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
     /*
     Internal methods
