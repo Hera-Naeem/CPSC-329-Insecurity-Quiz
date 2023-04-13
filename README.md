@@ -6,6 +6,6 @@ All of the topics discussed in class have been covered. There are four questions
 
 # Security gotchas:
 1. Cryptography: Asks for you to decrypt a cipher text before giving access to the quiz.
-2. Passwords: Asks for you to input your login information, but then revelas that yu shouldn't do this unless you trust the source! 
-3. Keylogger: Logs your keys and outputs it to testKeylogFile.txt
+2. Passwords: Asks for you to input your login information, but then reveals that you shouldn't do this unless you trust the source! 
+3. Keylogger: Logs your keys and outputs it to YOUR_KEYS_LOGGED.txt
 4. Networking: The keys logged are actually sent OVER a network connection, which luckily for you is on the same computer. In principle however, this program can steal your data!
