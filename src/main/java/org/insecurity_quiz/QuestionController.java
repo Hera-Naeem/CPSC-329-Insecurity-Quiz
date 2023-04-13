@@ -104,7 +104,7 @@ public class QuestionController {
         setTotalQuestions(totalQuestions);
         setQuestionIndex(0);
         setCurrentScore(score);
-        questionLoader = new QuestionLoader("QuizQuestions.csv");
+        questionLoader = new QuestionLoader("QuizQuestionsFinal.csv");
         loadQuestions(quesIndex);
         setProgressTracker(quesIndex+1);
     }
