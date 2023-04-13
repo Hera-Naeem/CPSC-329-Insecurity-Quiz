@@ -32,7 +32,7 @@
          </textFill>
         </Label>
 
-        <Label fx:id="welcomeText" alignment="CENTER" prefHeight="62.0" prefWidth="564.0" text="BY: JOHN NGO, DELIYA WANI, FAROOZ SHAFIN, HERA NAEEM" textAlignment="CENTER">
+        <Label fx:id="welcomeText" alignment="CENTER" prefHeight="62.0" prefWidth="564.0" text="BY: JOHN NGO, DELIYA WANI, FAIROOZ SHAFIN, HERA NAEEM" textAlignment="CENTER">
             <font>
                 <Font name="SEGOE UI SEMIBOLD" size="19.0" />
             </font>
